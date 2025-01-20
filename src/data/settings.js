@@ -1,6 +1,6 @@
 export default {
-  title: `Astro Minimal Starter`,
-  description: `This is an example blog made with Astro.`,
+  title: `II Efficient Media`,
+  description: `Specialized Digital Content Creation for Social Media`,
   url: `https://astro-minimal-starter.netlify.app`, // No trailing slash!
   // JSON LD
   name: `Example`,

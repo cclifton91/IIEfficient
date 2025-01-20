@@ -1,17 +1,23 @@
 ---
 import Layout from "../layouts/Base.astro";
-import Container from "../components/Container.astro";
+import Nav from "../components/Navigation.astro";
 
+//Props
 const seo = {
-  title: "Astro Minimal Starter",
-  description: "This is a starter repo for an blog built with Astro including open graph tags, canonical urls, RSS, sitemap support."
-  }
+  title: "II Efficient Media",
+  description: "Specialized Digital Content Creation for Social Media",
+};
+const navLinks = [
+  { href: "#home", text: "Home" },
+  { href: "#about", text: "About" },
+  { href: "#projects", text: "Projects" },
+  { href: "#contact", text: "Contact" }
+];
 ---
 
-<Layout
-  seo={seo}
->
-  <Container>
+<Layout {seo}>
+  <Nav navLinks={navLinks} logo="TriangleLogo" slot="header"/>
+  <!--<Container>
     <h1>Astro Minimal Starter</h1>
     <p>
       If you haven't heard about <a
@@ -40,5 +46,5 @@ const seo = {
     </p>
 
     <a href="/blog">Blog →</a>
-  </Container>
+  </Container>-->
 </Layout>

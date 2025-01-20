@@ -1,10 +1,9 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import type { Props as BaseHeadProps } from '../components/BaseHead.astro';
-
+import type { Props as BaseHeadProps } from "../components/BaseHead.astro";
 
 export interface Props {
-	seo?: BaseHeadProps;
+  seo?: BaseHeadProps;
 }
 
 const { seo } = Astro.props;
@@ -15,9 +14,9 @@ const { seo } = Astro.props;
     <BaseHead {...seo} />
     <slot name="head-bottom" />
   </head>
-  <body>
+  <body class="bg-background">
     <slot name="header" />
-    <main>
+    <main class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl py-20 lg:py-32">
       <slot />
     </main>
     <slot name="footer" />

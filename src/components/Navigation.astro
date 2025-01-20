@@ -1,0 +1,639 @@
+---
+import { Icon } from 'astro-icon/components';
+import Button from "../components/Button.astro";
+
+// Props with defaults
+const { logo = "TriangleLogo", logoAlt = "Go to homepage", navLinks = [], button=""} = Astro.props
+---
+
+
+<header class="bg-background f-header js-f-header hide-nav js-hide-nav js-hide-nav--main" data-nav-target-class="f-header--expanded" slot="header">
+  <div
+    class="f-header__mobile-content w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-7xl"
+  >
+    <a href="#0" class="f-header__logo">
+      <Icon name={logo} class="w-8 h-8" />
+    </a>
+
+    <button
+      class="anim-menu-btn js-anim-menu-btn f-header__nav-control js-tab-focus"
+      aria-label="Toggle menu"
+    >
+      <i
+        class="anim-menu-btn__icon anim-menu-btn__icon--close"
+        aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="f-header__nav" role="navigation">
+    <div
+      class="f-header__nav-grid lg:justify-between w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-7xl"
+    >
+    <!--NAV LINKS-->
+      <ul class="f-header__list grow basis-0">
+        {
+          navLinks.map((link) => (
+            <li class="f-header__item font-display">
+              <a href={link.href} class="f-header__link" aria-current={Astro.url.hash === link.href.replace('#', '') ? 'page' : undefined}>
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="f-header__nav-logo-wrapper grow basis-0 lg:justify-center">
+        <a href="#0" class="f-header__logo">
+          <Icon name={logo} class="size-20" />
+        </a>
+      </div>
+
+      <ul class="f-header__list grow basis-0 lg:justify-end">
+        <li class="f-header__item">
+          <Button type="outline" text="Contact" href="#contact" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<style>
+  :root {
+    --f-header-height: 50px;
+    --f-header-logo-width: 104px;
+  }
+  @media (min-width: 64rem) {
+    :root {
+      --f-header-height: 70px;
+    }
+  }
+
+  .f-header {
+    height: var(--f-header-height);
+    width: 100%;
+    @apply z-[3];
+  }
+  .f-header::before {
+    /* used in JS to detect menu style */
+    display: none;
+    content: "mobile";
+  }
+
+  .f-header--expanded {
+    /* class added when navigation is visible - small devices only */
+  }
+
+  .f-header__mobile-content {
+    /* logo + menu button on small devices */
+    position: relative;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .f-header__logo {
+    display: block;
+    width: var(--f-header-logo-width);
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  .f-header__logo svg,
+  .f-header__logo img {
+    display: block;
+  }
+
+  .f-header__nav-control {
+    /* menu button */
+    --anim-menu-btn-size: 40px;
+    /* 🍔 icon */
+    --anim-menu-btn-icon-size: 28px;
+    --anim-menu-btn-icon-stroke: 2px;
+  }
+
+  .f-header__nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: calc(100vh - var(--f-header-offset, 0px));
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
+    overscroll-behavior: contain;
+    @apply pt-0 px-0 pb-5 lg:pb-8;
+    @apply bg-white;
+    @apply shadow-md;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transform: translateY(-1em);
+    transform: translateY(-1em);
+  }
+  .f-header__nav::before {
+    /* top header bg + border */
+    content: "";
+    display: block;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: var(--f-header-height);
+    background-color: inherit;
+    @apply border-b border-gray-300;
+  }
+
+  .f-header__nav--is-visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition: visibility 0s, opacity 0.3s, -webkit-transform 0.3s;
+    transition: visibility 0s, opacity 0.3s, transform 0.3s;
+    transition: visibility 0s, opacity 0.3s, transform 0.3s,
+      -webkit-transform 0.3s;
+    display: block;
+    opacity: 1;
+  }
+
+  .f-header__nav-logo-wrapper {
+    display: none;
+    /* hide logo nav on small devices */
+  }
+
+  .f-header__item {
+    flex-shrink: 0;
+    @apply border-b border-gray-300;
+  }
+
+  .f-header__dropdown-icon {
+    --size: 16px;
+    flex-shrink: 0;
+    margin: 0 10px 0 auto;
+    display: none;
+    /* hide on mobile if link */
+  }
+  .f-header__dropdown-control .f-header__dropdown-icon {
+    display: block;
+  }
+
+  .f-header__link,
+  .f-header__dropdown-control,
+  .f-header__dropdown-link,
+  .f-header__btn,
+  .f-header__form-control {
+    @apply text-lg lg:text-2xl;
+  }
+
+  .f-header__link,
+  .f-header__dropdown-control,
+  .f-header__dropdown-link {
+    display: flex;
+    align-items: center;
+    @apply text-textColor;
+    text-decoration: none;
+    @apply py-2 lg:py-3 px-0;
+  }
+  .f-header__link:hover,
+  .f-header__link[aria-current="page"],
+  .f-header__dropdown-control:hover,
+  .f-header__dropdown-control[aria-current="page"],
+  .f-header__dropdown-link:hover,
+  .f-header__dropdown-link[aria-current="page"] {
+    @apply text-primary;
+  }
+
+  .f-header__btn,
+  .f-header__form-control {
+    width: 100%;
+    @apply my-2 lg:my-3 mx-0;
+  }
+
+  .f-header__dropdown-control {
+    width: 100%;
+  }
+
+  .f-header__dropdown {
+    /* sub navigation */
+    @apply pl-5 lg:pl-8;
+  }
+
+  .f-header__dropdown-control + .f-header__dropdown {
+    display: none;
+  }
+  .f-header__dropdown-control[aria-expanded="true"] + .f-header__dropdown {
+    display: block;
+  }
+
+  @media (min-width: 64rem) {
+    .f-header::before {
+      content: "desktop";
+    }
+
+    .f-header__mobile-content {
+      display: none;
+      /* hide logo + menu (mobile content) */
+    }
+
+    .f-header__nav {
+      /* reset */
+      position: static;
+      padding: 0;
+      background-color: transparent;
+      box-shadow: none;
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+      transition: none;
+      max-height: none;
+      overflow: visible;
+
+      overscroll-behavior: auto;
+      height: var(--f-header-height);
+    }
+    .f-header__nav::before {
+      /* reset */
+      display: none;
+    }
+
+    .f-header__nav-logo-wrapper {
+      display: flex;
+    }
+
+    .f-header__nav-grid,
+    .f-header__list {
+      display: flex;
+      align-items: center;
+    }
+
+    .f-header__nav-grid {
+      height: 100%;
+    }
+
+    .f-header__item {
+      position: relative;
+      border-bottom: none;
+      @apply mr-2 lg:mr-3;
+      /* margin between nav items */
+    }
+    .f-header__item:last-child {
+      margin-right: 0;
+    }
+
+    .f-header__link,
+    .f-header__dropdown-control,
+    .f-header__dropdown-link,
+    .f-header__btn,
+    .f-header__form-control {
+      font-size: 1.125rem;
+    }
+
+    .f-header__link {
+      @apply py-1 lg:py-1.5 px-1.5 lg:px-2;
+    }
+
+    .f-header__link--icon span {
+      display: none;
+      /* hide icon label */
+    }
+
+    .f-header__btn,
+    .f-header__form-control {
+      margin: 0;
+      /* reset */
+    }
+  }
+  /** CSS For Animated Button ********************************************/
+  :root {
+  --anim-menu-btn-size: 48px;
+  --anim-menu-btn-transition-duration: .2s;
+  --anim-menu-btn-icon-size: 32px;
+  --anim-menu-btn-icon-stroke: 2px;
+}
+
+.anim-menu-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--anim-menu-btn-size);
+  height: var(--anim-menu-btn-size);
+}
+
+.anim-menu-btn__icon {
+  position: relative;
+  display: block;
+  font-size: var(--anim-menu-btn-icon-size);
+  width: 1em;
+  height: var(--anim-menu-btn-icon-stroke);
+  color: inherit;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  transform: scale(1);
+}
+.anim-menu-btn__icon::before, .anim-menu-btn__icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: inherit;
+  border-radius: inherit;
+}
+
+.anim-menu-btn__icon--close {
+  background-size: 100% 100%;
+  will-change: transform, background-size;
+  transition-property: transform, background-size;
+}
+.anim-menu-btn:active .anim-menu-btn__icon--close {
+  transform: scale(0.9);
+}
+.anim-menu-btn__icon--close::before, .anim-menu-btn__icon--close::after {
+  will-change: inherit;
+  transition: inherit;
+}
+.anim-menu-btn__icon--close::before {
+  transform: translateY(-0.25em) rotate(0);
+}
+.anim-menu-btn__icon--close::after {
+  transform: translateY(0.25em) rotate(0);
+}
+
+.anim-menu-btn--state-b .anim-menu-btn__icon--close {
+  background-size: 0% 100%;
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--close::before {
+  transform: translateY(0) rotate(45deg);
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--close::after {
+  transform: translateY(0) rotate(-45deg);
+}
+
+.anim-menu-btn__icon--arrow-left,
+.anim-menu-btn__icon--arrow-right,
+.anim-menu-btn__icon--arrow-up,
+.anim-menu-btn__icon--arrow-down {
+  border-radius: 50em;
+  will-change: transform;
+  transition-property: transform;
+  transition-duration: var(--anim-menu-btn-transition-duration, 0.2s);
+}
+.anim-menu-btn:active .anim-menu-btn__icon--arrow-left,
+.anim-menu-btn:active .anim-menu-btn__icon--arrow-right,
+.anim-menu-btn:active .anim-menu-btn__icon--arrow-up,
+.anim-menu-btn:active .anim-menu-btn__icon--arrow-down {
+  transform: scale(0.9);
+}
+.anim-menu-btn__icon--arrow-left::before, .anim-menu-btn__icon--arrow-left::after,
+.anim-menu-btn__icon--arrow-right::before,
+.anim-menu-btn__icon--arrow-right::after,
+.anim-menu-btn__icon--arrow-up::before,
+.anim-menu-btn__icon--arrow-up::after,
+.anim-menu-btn__icon--arrow-down::before,
+.anim-menu-btn__icon--arrow-down::after {
+  transform-origin: calc(var(--anim-menu-btn-icon-stroke)/2) 50%;
+  will-change: transform, width;
+  transition-property: transform, width;
+  transition-duration: var(--anim-menu-btn-transition-duration, 0.2s);
+}
+.anim-menu-btn__icon--arrow-left::before,
+.anim-menu-btn__icon--arrow-right::before,
+.anim-menu-btn__icon--arrow-up::before,
+.anim-menu-btn__icon--arrow-down::before {
+  transform: translateY(-0.25em) rotate(0);
+}
+.anim-menu-btn__icon--arrow-left::after,
+.anim-menu-btn__icon--arrow-right::after,
+.anim-menu-btn__icon--arrow-up::after,
+.anim-menu-btn__icon--arrow-down::after {
+  transform: translateY(0.25em) rotate(0);
+}
+
+.anim-menu-btn__icon--arrow-right {
+  transform: rotate(180deg);
+}
+.anim-menu-btn:active .anim-menu-btn__icon--arrow-right {
+  transform: rotate(180deg) scale(0.9);
+}
+
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-left::before, .anim-menu-btn--state-b .anim-menu-btn__icon--arrow-left::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-right::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-right::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-up::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-up::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-down::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-down::after {
+  width: 50%;
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-left::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-right::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-up::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-down::before {
+  transform: translateY(0) rotate(-45deg);
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-left::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-right::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-up::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-down::after {
+  transform: translateY(0) rotate(45deg);
+}
+.anim-menu-btn--state-b:active .anim-menu-btn__icon--arrow-up {
+  transform: rotate(90deg) scale(0.9);
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-up {
+  transform: rotate(90deg);
+}
+.anim-menu-btn--state-b:active .anim-menu-btn__icon--arrow-down {
+  transform: rotate(-90deg) scale(0.9);
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-down {
+  transform: rotate(-90deg);
+}
+</style>
+<script>
+//Hiding Navigation
+/**********************************************************************************************************/
+    // Declare variables with appropriate types
+  let headerHeight: number = 0;
+  let mainNavTop: number = 0;
+  let currentTop: number = 0;
+  let previousTop: number = 0;
+  let scrolling: boolean = false;
+
+  // Assume these are defined somewhere in the code
+  const mainNav: HTMLCollectionOf<Element> = document.getElementsByClassName('js-hide-nav--main');
+  const subNav: HTMLCollectionOf<Element> = document.getElementsByClassName('js-hide-nav--sub');
+  const hidingNav: HTMLCollectionOf<Element> = document.getElementsByClassName('js-hiding-nav');
+  const triggerMobile: HTMLElement | null = getTriggerMobileMenu();
+  const scrollDelta: number = 10;
+  const scrollOffset: number = 150;
+  const navIsFixed: boolean = true;
+  const navOpenClasses: string[] = [];
+  const navOpenArrayClasses: string[] = [];
+  let prevElement: HTMLElement | null = createPrevElement();
+
+  // Initialize navigation and listen to window events
+  getHeaderHeight();
+  initSecondaryNav();
+  initFixedNav();
+  resetHideNav();
+
+  window.addEventListener('scroll', (event: Event) => {
+    if (scrolling) return;
+    scrolling = true;
+    window.requestAnimationFrame(resetHideNav);
+  });
+
+  window.addEventListener('resize', (event: Event) => {
+    if (scrolling) return;
+    scrolling = true;
+    window.requestAnimationFrame(() => {
+      if (headerHeight > 0) {
+        getMainNavTop();
+        getHeaderHeight();
+        initSecondaryNav();
+        initFixedNav();
+      }
+      hideNavScrollUp();
+      scrolling = false;
+    });
+  });
+
+  // Function definitions
+  function getHeaderHeight(): void {
+    if (mainNav[0]) {
+      headerHeight = (mainNav[0] as HTMLElement).offsetHeight;
+    }
+  }
+
+  function initSecondaryNav(): void {
+    if (subNav.length < 1 || mainNav.length < 1) return;
+    (subNav[0] as HTMLElement).style.top = `${headerHeight - 1}px`;
+  }
+
+  function initFixedNav(): void {
+    if (!navIsFixed || mainNav.length < 1) return;
+    (mainNav[0] as HTMLElement).style.marginBottom = `-${headerHeight}px`;
+  }
+
+  function resetHideNav(): void {
+    currentTop = window.scrollY;
+    if (currentTop - previousTop > scrollDelta && currentTop > scrollOffset) {
+      hideNavScrollDown();
+    } else if (
+      previousTop - currentTop > scrollDelta ||
+      (previousTop - currentTop > 0 && currentTop < scrollOffset)
+    ) {
+      hideNavScrollUp();
+    } else if (previousTop - currentTop > 0 && subNav.length > 0 && subNav[0].getBoundingClientRect().top > 0) {
+      setTranslate(subNav[0] as HTMLElement, '0%');
+    }
+
+    if (navIsFixed) {
+      const scrollTop = window.scrollY || window.pageYOffset;
+      (mainNav[0] as HTMLElement).classList.toggle('hide-nav--has-bg', scrollTop > headerHeight + mainNavTop);
+    }
+    previousTop = currentTop;
+    scrolling = false;
+  }
+
+  function hideNavScrollDown(): void {
+    if (subNav.length > 0 && subNav[0].getBoundingClientRect().top > headerHeight) return;
+    if (triggerMobile && triggerMobile.getAttribute('aria-expanded') === 'true') return;
+    if (mainNav.length > 0 && (!navOpenClasses || !checkNavExpanded())) {
+      setTranslate(mainNav[0] as HTMLElement, '-100%');
+      mainNav[0].addEventListener('transitionend', addOffCanvasClass);
+    }
+    if (subNav.length > 0) setTranslate(subNav[0] as HTMLElement, `-${headerHeight}px`);
+  }
+
+  function hideNavScrollUp(): void {
+    if (mainNav.length > 0) {
+      setTranslate(mainNav[0] as HTMLElement, '0%');
+      mainNav[0].classList.remove('hide-nav--off-canvas');
+      mainNav[0].removeEventListener('transitionend', addOffCanvasClass);
+    }
+    if (subNav.length > 0) setTranslate(subNav[0] as HTMLElement, '0%');
+  }
+
+  function addOffCanvasClass(): void {
+    if (mainNav[0]) {
+      mainNav[0].removeEventListener('transitionend', addOffCanvasClass);
+      mainNav[0].classList.add('hide-nav--off-canvas');
+    }
+  }
+
+  function setTranslate(element: HTMLElement, val: string): void {
+    element.style.transform = `translateY(${val})`;
+  }
+
+  function getTriggerMobileMenu(): HTMLElement | null {
+    if (hidingNav.length < 1) return null;
+    const triggerMobileClass = hidingNav[0].getAttribute('data-mobile-trigger');
+    if (!triggerMobileClass) return null;
+    if (triggerMobileClass.startsWith('#')) {
+      return document.getElementById(triggerMobileClass.replace('#', ''));
+    } else {
+      const elements = hidingNav[0].getElementsByClassName(triggerMobileClass);
+      return elements.length > 0 ? (elements[0] as HTMLElement) : null;
+    }
+  }
+
+  function createPrevElement(): HTMLElement | null {
+    if (mainNav.length < 1) return null;
+    const newElement = document.createElement('div');
+    newElement.setAttribute('aria-hidden', 'true');
+    mainNav[0].parentElement?.insertBefore(newElement, mainNav[0]);
+    const prevElement = mainNav[0].previousElementSibling as HTMLElement;
+    prevElement.style.opacity = '0';
+    return prevElement;
+  }
+
+  function getMainNavTop(): void {
+    if (!prevElement) return;
+    mainNavTop = prevElement.getBoundingClientRect().top + window.scrollY;
+  }
+
+  function checkNavExpanded(): boolean {
+    return navOpenArrayClasses.some((cls) => mainNav[0].classList.contains(cls.trim()));
+  }
+/*******************************************************************************/
+//Moblie Navigation
+(function () {
+    const menuBtns = document.getElementsByClassName('js-anim-menu-btn') as HTMLCollectionOf<HTMLElement>;
+
+    if (menuBtns.length > 0) {
+      for (let i = 0; i < menuBtns.length; i++) {
+        initMenuBtn(menuBtns[i]);
+      }
+
+      function initMenuBtn(btn: HTMLElement): void {
+        btn.addEventListener('click', (event: MouseEvent) => {
+          event.preventDefault();
+
+          const status = !btn.classList.contains('anim-menu-btn--state-b');
+          btn.classList.toggle('anim-menu-btn--state-b', status);
+
+          const customEvent = new CustomEvent('anim-menu-btn-clicked', { detail: status });
+          btn.dispatchEvent(customEvent);
+        });
+      }
+    }
+
+    document.addEventListener('anim-menu-btn-clicked', (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const nav = document.querySelector('.f-header__nav');
+      const body = document.body;
+
+      if (customEvent.detail) {
+        // Show the navigation menu
+        nav?.classList.add('f-header__nav--is-visible');
+        body.classList.add('no-scroll');
+      } else {
+        // Hide the navigation menu
+        nav?.classList.remove('f-header__nav--is-visible');
+        body.classList.remove('no-scroll');
+      }
+    });
+  })();
+</script>

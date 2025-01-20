@@ -1,0 +1,21 @@
+---
+const { type = 'primary', text = 'Click Me', onClick, href } = Astro.props;
+
+const buttonClasses = {
+  primary: "bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700",
+  secondary: "bg-gray-500 text-white font-bold py-2 px-4 rounded hover:bg-gray-700",
+  outline: "bg-transparent font-display text-textColor font-bold py-2 px-4 border border-textColor rounded hover:bg-accent hover:text-white",
+};
+
+const className = buttonClasses[type] || buttonClasses.primary;
+---
+
+{href ? (
+  <a href={href} class={className}>
+    {text}
+  </a>
+) : (
+  <button class={className} onclick={onClick}>
+    {text}
+  </button>
+)}
