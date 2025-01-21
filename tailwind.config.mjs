@@ -14,6 +14,12 @@ export default {
         display: ["Big SHoulders Display", "serif"],
         body: ["Space Mono", "serif"],
       },
+      lineHeight: {
+        'introText': '11rem',
+      },
+      fontSize: {
+        'introHeading' : '12rem',
+      },
     },
   },
   plugins: [],

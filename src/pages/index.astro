@@ -1,7 +1,26 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Base.astro";
 import Nav from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro"; 
+import Intro from "../components/Intro.astro";
+
+import cookies from '../assets/Cookieslogo.png';
+import hawks from '../assets/HawksLogo.png';
+import ub from '../assets/UBlogo.png';
+import trival from '../assets/TriValLogo.png';
+import iu from '../assets/IUlogo.png';
+import cs from '../assets/Clutchsportsmedia.png';
+
+const logos = [
+  { src: cookies, alt: "Cookies Logo" },
+  { src: hawks, alt: "Hawks Logo" },
+  { src: ub, alt: "UB Logo" },
+  { src: trival, alt: "TriVal Logo" },
+  { src: iu, alt: "IU Logo" },
+  { src: cs, alt: "Clutch Sports Media Logo" },
+
+];
 
 //Props
 const seo = {
@@ -17,35 +36,14 @@ const navLinks = [
 
 <Layout {seo}>
   <Nav navLinks={navLinks} logo="TriangleLogo" slot="header"/>
-  <!--<Container>
-    <h1>Astro Minimal Starter</h1>
-    <p>
-      If you haven't heard about <a
-        href="https://astro.build"
-        target="_blank"
-        rel="noopener noreferrer">Astro</a
-      > yet you're missing out. This starter repo gives you a blog website with posts
-      written in Markdown, all powered by Astro.
-    </p>
-
-    <p>
-      Don't be fooled by the simplicity of this starter either. With excellent
-      SEO built in, Astro's excellent developer environment, and performance
-      best practices you're getting one of the best foundations for a personal
-      blog with posts written in markdown. The reason for making such a bare
-      bones starter in terms of styles is that it has what you need out of the
-      box for SEO and site structure but it makes no assumptions about how you
-      want it look and behave.
-    </p>
-
-    <p>
-      Sometimes starters can feel like they are giving us way too much and
-      you'll spend a day picking apart half of the code to get to the setup you
-      actually wanted. Want to use vanilla CSS instead of Tailwind or Scss? No
-      problem!
-    </p>
-
-    <a href="/blog">Blog →</a>
-  </Container>-->
+  <Intro
+    videoSrc="/assets/videos/IIEfficientIntro.mp4"
+    mainTitle="II EFFICIENT MEDIA"
+    subTitle="CAPTURING COMPELLING STORIES"
+    aboutTitle="WE HELP GROW BUSINESSES"
+    aboutText1="II Efficient Media - where storytelling meets creativity. Based in Illinois, we are a vibrant creative agency specializing in crafting high-quality, visually stunning content for athletes, colleges, and businesses across the state."
+    aboutText2="With over three years of professional experience, our team is dedicated to capturing the heart of athletics and business storytelling. From showcasing the determination of a game to highlighting the passion of an athlete or elevating a brand's message, every project is an opportunity to create something extraordinary."
+    logos={logos}
+  />
   <Footer slot="footer"/>
 </Layout>
