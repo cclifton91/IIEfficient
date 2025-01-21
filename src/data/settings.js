@@ -9,5 +9,7 @@ export default {
   // Twitter URL
   twitterURL: `https://twitter.com/jaydanurwin`,
   // Instagram URL
-  instagramURL: `https://instagram.com/jaydanurwin`,
+  instagramURL: `https://www.instagram.com/kenny2efficient/`,
+  // TikTok URL
+  tikTokURL: 'https://www.tiktok.com/@iiefficient',
 };
