@@ -3,37 +3,31 @@ import { Icon } from 'astro-icon/components';
 import Button from "../components/Button.astro";
 
 // Props with defaults
-const { logo = "TriangleLogo", logoAlt = "Go to homepage", navLinks = [], button=""} = Astro.props
+const { logo = "TriangleLogo", logoAlt = "Go to homepage", navLinks = [], button="Contact"} = Astro.props
 ---
-
-
-<header class="bg-background f-header js-f-header hide-nav js-hide-nav js-hide-nav--main" data-nav-target-class="f-header--expanded" slot="header">
-  <div
-    class="f-header__mobile-content w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-7xl"
-  >
+<header class="bg-background f-header js-f-header hide-nav js-hide-nav js-hide-nav--main" data-nav-target-class="f-header--expanded">
+  <div class="f-header__mobile-content w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-7xl">
     <a href="#0" class="f-header__logo">
-      <Icon name={logo} class="w-8 h-8" />
+      <Icon name={logo} class="size-16" />
     </a>
 
-    <button
-      class="anim-menu-btn js-anim-menu-btn f-header__nav-control js-tab-focus"
-      aria-label="Toggle menu"
-    >
-      <i
-        class="anim-menu-btn__icon anim-menu-btn__icon--close"
-        aria-hidden="true"></i>
+    <button class="anim-menu-btn js-anim-menu-btn f-header__nav-control js-tab-focus" aria-label="Toggle menu">
+      <i class="anim-menu-btn__icon anim-menu-btn__icon--arrow-down" aria-hidden="true"></i>
     </button>
   </div>
 
   <div class="f-header__nav" role="navigation">
-    <div
-      class="f-header__nav-grid lg:justify-between w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-7xl"
-    >
-    <!--NAV LINKS-->
-      <ul class="f-header__list grow basis-0">
+    <div class="f-header__nav-grid lg:justify-between w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-7xl">
+      <div class="f-header__nav-logo-wrapper grow basis-0">
+        <a href="#0" class="f-header__logo">
+          <Icon name={logo} class="size-16" />
+        </a>
+      </div>
+
+      <ul class="f-header__list grow basis-0 lg:justify-center">
         {
           navLinks.map((link) => (
-            <li class="f-header__item font-display">
+            <li class="f-header__item">
               <a href={link.href} class="f-header__link" aria-current={Astro.url.hash === link.href.replace('#', '') ? 'page' : undefined}>
                 {link.text}
               </a>
@@ -42,274 +36,323 @@ const { logo = "TriangleLogo", logoAlt = "Go to homepage", navLinks = [], button
         }
       </ul>
 
-      <div class="f-header__nav-logo-wrapper grow basis-0 lg:justify-center">
-        <a href="#0" class="f-header__logo">
-          <Icon name={logo} class="size-20" />
-        </a>
-      </div>
-
       <ul class="f-header__list grow basis-0 lg:justify-end">
         <li class="f-header__item">
-          <Button type="outline" text="Contact" href="#contact" />
+          <Button type="outline" text={button} href="#contact" />
         </li>
       </ul>
     </div>
   </div>
 </header>
 
+<!--Style---------------------------------------------------------------------------------------------------------------->
 <style>
   :root {
-    --f-header-height: 50px;
-    --f-header-logo-width: 104px;
-  }
-  @media (min-width: 64rem) {
-    :root {
-      --f-header-height: 70px;
-    }
-  }
-
-  .f-header {
-    height: var(--f-header-height);
-    width: 100%;
-    @apply z-[3];
-  }
-  .f-header::before {
-    /* used in JS to detect menu style */
-    display: none;
-    content: "mobile";
-  }
-
-  .f-header--expanded {
-    /* class added when navigation is visible - small devices only */
-  }
-
-  .f-header__mobile-content {
-    /* logo + menu button on small devices */
-    position: relative;
-    display: flex;
-    height: 100%;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-  }
-
-  .f-header__logo {
-    display: block;
-    width: var(--f-header-logo-width);
-    flex-shrink: 0;
-    text-decoration: none;
-  }
-  .f-header__logo svg,
-  .f-header__logo img {
-    display: block;
-  }
-
-  .f-header__nav-control {
-    /* menu button */
-    --anim-menu-btn-size: 40px;
-    /* 🍔 icon */
-    --anim-menu-btn-icon-size: 28px;
-    --anim-menu-btn-icon-stroke: 2px;
-  }
-
-  .f-header__nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    max-height: calc(100vh - var(--f-header-offset, 0px));
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-
-    overscroll-behavior: contain;
-    @apply pt-0 px-0 pb-5 lg:pb-8;
-    @apply bg-white;
-    @apply shadow-md;
-    z-index: 1;
-    visibility: hidden;
-    opacity: 0;
-    -webkit-transform: translateY(-1em);
-    transform: translateY(-1em);
-  }
-  .f-header__nav::before {
-    /* top header bg + border */
-    content: "";
-    display: block;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    height: var(--f-header-height);
-    background-color: inherit;
-    @apply border-b border-gray-300;
-  }
-
-  .f-header__nav--is-visible {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
-    transition: visibility 0s, opacity 0.3s, -webkit-transform 0.3s;
-    transition: visibility 0s, opacity 0.3s, transform 0.3s;
-    transition: visibility 0s, opacity 0.3s, transform 0.3s,
-      -webkit-transform 0.3s;
-    display: block;
-    opacity: 1;
-  }
-
-  .f-header__nav-logo-wrapper {
-    display: none;
-    /* hide logo nav on small devices */
-  }
-
-  .f-header__item {
-    flex-shrink: 0;
-    @apply border-b border-gray-300;
-  }
-
-  .f-header__dropdown-icon {
-    --size: 16px;
-    flex-shrink: 0;
-    margin: 0 10px 0 auto;
-    display: none;
-    /* hide on mobile if link */
-  }
-  .f-header__dropdown-control .f-header__dropdown-icon {
-    display: block;
-  }
-
-  .f-header__link,
-  .f-header__dropdown-control,
-  .f-header__dropdown-link,
-  .f-header__btn,
-  .f-header__form-control {
-    @apply text-lg lg:text-2xl;
-  }
-
-  .f-header__link,
-  .f-header__dropdown-control,
-  .f-header__dropdown-link {
-    display: flex;
-    align-items: center;
-    @apply text-textColor;
-    text-decoration: none;
-    @apply py-2 lg:py-3 px-0;
-  }
-  .f-header__link:hover,
-  .f-header__link[aria-current="page"],
-  .f-header__dropdown-control:hover,
-  .f-header__dropdown-control[aria-current="page"],
-  .f-header__dropdown-link:hover,
-  .f-header__dropdown-link[aria-current="page"] {
-    @apply text-primary;
-  }
-
-  .f-header__btn,
-  .f-header__form-control {
-    width: 100%;
-    @apply my-2 lg:my-3 mx-0;
-  }
-
-  .f-header__dropdown-control {
-    width: 100%;
-  }
-
-  .f-header__dropdown {
-    /* sub navigation */
-    @apply pl-5 lg:pl-8;
-  }
-
-  .f-header__dropdown-control + .f-header__dropdown {
-    display: none;
-  }
-  .f-header__dropdown-control[aria-expanded="true"] + .f-header__dropdown {
-    display: block;
-  }
-
-  @media (min-width: 64rem) {
-    .f-header::before {
-      content: "desktop";
-    }
-
-    .f-header__mobile-content {
-      display: none;
-      /* hide logo + menu (mobile content) */
-    }
-
-    .f-header__nav {
-      /* reset */
-      position: static;
-      padding: 0;
-      background-color: transparent;
-      box-shadow: none;
-      visibility: visible;
-      opacity: 1;
-      transform: translateY(0);
-      transition: none;
-      max-height: none;
-      overflow: visible;
-
-      overscroll-behavior: auto;
-      height: var(--f-header-height);
-    }
-    .f-header__nav::before {
-      /* reset */
-      display: none;
-    }
-
-    .f-header__nav-logo-wrapper {
-      display: flex;
-    }
-
-    .f-header__nav-grid,
-    .f-header__list {
-      display: flex;
-      align-items: center;
-    }
-
-    .f-header__nav-grid {
-      height: 100%;
-    }
-
-    .f-header__item {
-      position: relative;
-      border-bottom: none;
-      @apply mr-2 lg:mr-3;
-      /* margin between nav items */
-    }
-    .f-header__item:last-child {
-      margin-right: 0;
-    }
-
-    .f-header__link,
-    .f-header__dropdown-control,
-    .f-header__dropdown-link,
-    .f-header__btn,
-    .f-header__form-control {
-      font-size: 1.125rem;
-    }
-
-    .f-header__link {
-      @apply py-1 lg:py-1.5 px-1.5 lg:px-2;
-    }
-
-    .f-header__link--icon span {
-      display: none;
-      /* hide icon label */
-    }
-
-    .f-header__btn,
-    .f-header__form-control {
-      margin: 0;
-      /* reset */
-    }
-  }
-  /** CSS For Animated Button ********************************************/
-  :root {
+  --f-header-height: 50px;
+  --f-header-logo-width: 104px;
   --anim-menu-btn-size: 48px;
   --anim-menu-btn-transition-duration: .2s;
   --anim-menu-btn-icon-size: 32px;
   --anim-menu-btn-icon-stroke: 2px;
 }
+@media (min-width: 64rem) {
+  :root {
+    --f-header-height: 70px;
+  }
+}
 
+.f-header {
+  height: var(--f-header-height);
+  width: 100%;
+  @apply z-[3];
+}
+.f-header::before {
+  /* used in JS to detect menu style */
+  display: none;
+  content: "mobile";
+}
+
+.f-header--expanded {
+  /* class added when navigation is visible - small devices only */
+}
+
+.f-header__mobile-content {
+  /* logo + menu button on small devices */
+  position: relative;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.f-header__logo {
+  display: block;
+  width: var(--f-header-logo-width);
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.f-header__logo svg, .f-header__logo img {
+  display: block;
+}
+
+.f-header__nav-control {
+  /* menu button */
+  --anim-menu-btn-size: 40px;
+  /* 🍔 icon */
+  --anim-menu-btn-icon-size: 28px;
+  --anim-menu-btn-icon-stroke: 2px;
+}
+
+.f-header__nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: calc(100vh - var(--f-header-offset, 0px));
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  
+      overscroll-behavior: contain;
+  @apply pt-0 px-0 pb-5 lg:pb-8;
+  @apply bg-background;
+  @apply shadow-md;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transform: translateY(-1em);transform: translateY(-1em);
+}
+.f-header__nav::before {
+  /* top header bg + border */
+  content: "";
+  display: block;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: var(--f-header-height);
+  background-color: inherit;
+  @apply border-b border-gray-300;
+}
+
+.f-header__nav--is-visible {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: visibility 0s, opacity 0.3s, -webkit-transform 0.3s;
+  transition: visibility 0s, opacity 0.3s, transform 0.3s;
+  transition: visibility 0s, opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
+}
+
+.f-header__nav-logo-wrapper {
+  display: none;
+  /* hide logo nav on small devices */
+}
+
+.f-header__item {
+  flex-shrink: 0;
+ 
+}
+
+.f-header__dropdown-icon {
+  --size: 16px;
+  flex-shrink: 0;
+  margin: 0 10px 0 auto;
+  display: none;
+  /* hide on mobile if link */
+}
+.f-header__dropdown-control .f-header__dropdown-icon {
+  display: block;
+}
+
+.f-header__link,
+.f-header__dropdown-control,
+.f-header__dropdown-link,
+.f-header__btn,
+.f-header__form-control {
+  @apply text-3xl lg:text-3xl;
+}
+
+.f-header__link,
+.f-header__dropdown-control,
+.f-header__dropdown-link {
+  display: flex;
+  align-items: center;
+  @apply text-textColor;
+  text-decoration: none;
+  @apply py-3 lg:py-3 px-0;
+  @apply font-display;
+}
+.f-header__link:hover, .f-header__link[aria-current=page],
+.f-header__dropdown-control:hover,
+.f-header__dropdown-control[aria-current=page],
+.f-header__dropdown-link:hover,
+.f-header__dropdown-link[aria-current=page] {
+  @apply text-primary;
+}
+
+.f-header__btn,
+.f-header__form-control {
+  width: 100%;
+  @apply my-4 lg:my-3 mx-0;
+}
+
+.f-header__dropdown-control {
+  width: 100%;
+}
+
+.f-header__dropdown {
+  /* sub navigation */
+  @apply pl-5 lg:pl-8;
+}
+
+.f-header__dropdown-control + .f-header__dropdown {
+  display: none;
+}
+.f-header__dropdown-control[aria-expanded=true] + .f-header__dropdown {
+  display: block;
+}
+
+@media (min-width: 64rem) {
+  .f-header::before {
+    content: "desktop";
+  }
+
+  .f-header__mobile-content {
+    display: none;
+    /* hide logo + menu (mobile content) */
+  }
+
+  .f-header__nav {
+    /* reset */
+    position: static;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+    visibility: visible;
+    opacity: 1;
+      transform: translateY(0);
+    transition: none;
+    max-height: none;
+    overflow: visible;
+    
+        overscroll-behavior: auto;
+    height: var(--f-header-height);
+  }
+  .f-header__nav::before {
+    /* reset */
+    display: none;
+  }
+
+  .f-header__nav-logo-wrapper {
+    display: flex;
+  }
+
+  .f-header__nav-grid,
+.f-header__list {
+    display: flex;
+    align-items: center;
+  }
+
+  .f-header__nav-grid {
+    height: 100%;
+  }
+
+  .f-header__item {
+    position: relative;
+    border-bottom: none;
+    @apply mr-2 lg:mr-3;
+    /* margin between nav items */
+  }
+  .f-header__item:last-child {
+    margin-right: 0;
+  }
+
+  .f-header__dropdown-icon {
+    --size: 12px;
+    display: block;
+    @apply mt-0 mr-0 mb-0 ml-0.5 lg:ml-1;
+  }
+
+  .f-header__link,
+.f-header__dropdown-control,
+.f-header__dropdown-link,
+.f-header__btn,
+.f-header__form-control {
+    font-size: 1.125rem;
+  }
+
+  .f-header__link {
+    @apply py-1 lg:py-1.5 px-1.5 lg:px-2;
+  }
+
+  .f-header__link--icon span {
+    display: none;
+    /* hide icon label */
+  }
+
+  .f-header__btn,
+.f-header__form-control {
+    margin: 0;
+    /* reset */
+  }
+
+  .f-header__dropdown {
+    position: absolute;
+    top: 100%;
+    width: 220px;
+    left: calc(50% - 110px);
+    @apply py-1 lg:py-1.5 px-0;
+    @apply bg-white;
+    @apply rounded;
+    @apply shadow-lg;
+    @apply z-[5];
+    /* hide */
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s 0.2s, opacity 0.2s 0s;
+  }
+  .f-header__dropdown-control + .f-header__dropdown {
+    display: block;
+    /* reset style */
+  }
+  .f-header__item:hover .f-header__dropdown, .f-header__dropdown-control[aria-expanded=true] + .f-header__dropdown {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.2s 0s, opacity 0.2s 0s;
+  }
+
+  .f-header__dropdown-link {
+    @apply text-gray-700;
+    @apply py-2 px-3 lg:px-5;
+    transition: 0.2s;
+  }
+  .f-header__dropdown-link:hover {
+    @apply bg-gray-900/[.07];
+    @apply text-gray-900;
+  }
+}
+/**** Hide Nav ********/
+.hide-nav {
+  --hide-nav-transition-duration: 0.3s;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0;
+  will-change: transform;
+  transition: background-color var(--hide-nav-transition-duration), -webkit-transform var(--hide-nav-transition-duration);
+  transition: transform var(--hide-nav-transition-duration), background-color var(--hide-nav-transition-duration);
+  transition: transform var(--hide-nav-transition-duration), background-color var(--hide-nav-transition-duration), -webkit-transform var(--hide-nav-transition-duration);
+}
+
+.hide-nav--fixed {
+  background-color: transparent;
+}
+
+.hide-nav--has-bg {
+  @apply bg-white;
+}
+/****Animated Button**/ 
 .anim-menu-btn {
   display: flex;
   justify-content: center;
@@ -317,14 +360,14 @@ const { logo = "TriangleLogo", logoAlt = "Go to homepage", navLinks = [], button
   width: var(--anim-menu-btn-size);
   height: var(--anim-menu-btn-size);
 }
-
+/** Menu Button ****************************************************************/
 .anim-menu-btn__icon {
   position: relative;
   display: block;
   font-size: var(--anim-menu-btn-icon-size);
   width: 1em;
   height: var(--anim-menu-btn-icon-stroke);
-  color: inherit;
+  @apply text-textColor;
   background-image: linear-gradient(currentColor, currentColor);
   background-repeat: no-repeat;
   transform: scale(1);
@@ -450,190 +493,181 @@ const { logo = "TriangleLogo", logoAlt = "Go to homepage", navLinks = [], button
   transform: rotate(-90deg);
 }
 </style>
+
+<!--Script---------------------------------------------------------------------------------------------------------------->
 <script>
-//Hiding Navigation
-/**********************************************************************************************************/
-    // Declare variables with appropriate types
-  let headerHeight: number = 0;
-  let mainNavTop: number = 0;
-  let currentTop: number = 0;
-  let previousTop: number = 0;
-  let scrolling: boolean = false;
+  /***************************************
+ * Navigation Utilities
+ ***************************************/
+type NullableHTMLElement = HTMLElement | null;
 
-  // Assume these are defined somewhere in the code
-  const mainNav: HTMLCollectionOf<Element> = document.getElementsByClassName('js-hide-nav--main');
-  const subNav: HTMLCollectionOf<Element> = document.getElementsByClassName('js-hide-nav--sub');
-  const hidingNav: HTMLCollectionOf<Element> = document.getElementsByClassName('js-hiding-nav');
-  const triggerMobile: HTMLElement | null = getTriggerMobileMenu();
-  const scrollDelta: number = 10;
-  const scrollOffset: number = 150;
-  const navIsFixed: boolean = true;
-  const navOpenClasses: string[] = [];
-  const navOpenArrayClasses: string[] = [];
-  let prevElement: HTMLElement | null = createPrevElement();
+/**
+ * Utility to check if an element is visible.
+ */
+function isVisible(element: HTMLElement): boolean {
+  return element.offsetWidth > 0 || element.offsetHeight > 0 || element.getClientRects().length > 0;
+}
 
-  // Initialize navigation and listen to window events
-  getHeaderHeight();
-  initSecondaryNav();
-  initFixedNav();
-  resetHideNav();
+/**
+ * Get the current layout type based on CSS `:before` content.
+ */
+function getLayout(element: HTMLElement): string {
+  const layout = getComputedStyle(element, ':before').getPropertyValue('content');
+  return layout.replace(/['"]/g, '');
+}
 
-  window.addEventListener('scroll', (event: Event) => {
-    if (scrolling) return;
-    scrolling = true;
-    window.requestAnimationFrame(resetHideNav);
-  });
+/***************************************
+ * Animated Menu Button
+ ***************************************/
+function initializeAnimatedMenuButtons(): void {
+  const menuBtns = document.getElementsByClassName('js-anim-menu-btn') as HTMLCollectionOf<HTMLElement>;
 
-  window.addEventListener('resize', (event: Event) => {
-    if (scrolling) return;
-    scrolling = true;
-    window.requestAnimationFrame(() => {
-      if (headerHeight > 0) {
-        getMainNavTop();
-        getHeaderHeight();
-        initSecondaryNav();
-        initFixedNav();
-      }
-      hideNavScrollUp();
-      scrolling = false;
+  if (menuBtns.length > 0) {
+    Array.from(menuBtns).forEach((btn) => {
+      btn.addEventListener('click', (event: MouseEvent) => {
+        event.preventDefault();
+        const status = !btn.classList.contains('anim-menu-btn--state-b');
+        btn.classList.toggle('anim-menu-btn--state-b', status);
+
+        const customEvent = new CustomEvent('anim-menu-btn-clicked', { detail: status });
+        btn.dispatchEvent(customEvent);
+      });
     });
+  }
+}
+
+/***************************************
+ * Flex Header
+ ***************************************/
+function initializeFlexHeader(): void {
+  const flexHeader = document.querySelector('.js-f-header') as NullableHTMLElement;
+
+  if (!flexHeader) return;
+
+  const menuTrigger = flexHeader.querySelector('.js-anim-menu-btn') as NullableHTMLElement;
+  const firstFocusableElement = getFirstFocusableElement(flexHeader);
+  let focusMenu: NullableHTMLElement = null;
+
+  if (!menuTrigger) return;
+
+  resetFlexHeaderOffset(flexHeader);
+  setAriaButtons(flexHeader);
+
+  // Handle menu button click event
+  menuTrigger.addEventListener('anim-menu-btn-clicked', (event: Event) => {
+    const customEvent = event as CustomEvent;
+    toggleMenuNavigation(flexHeader, menuTrigger, firstFocusableElement, customEvent.detail);
   });
 
-  // Function definitions
-  function getHeaderHeight(): void {
-    if (mainNav[0]) {
-      headerHeight = (mainNav[0] as HTMLElement).offsetHeight;
-    }
-  }
-
-  function initSecondaryNav(): void {
-    if (subNav.length < 1 || mainNav.length < 1) return;
-    (subNav[0] as HTMLElement).style.top = `${headerHeight - 1}px`;
-  }
-
-  function initFixedNav(): void {
-    if (!navIsFixed || mainNav.length < 1) return;
-    (mainNav[0] as HTMLElement).style.marginBottom = `-${headerHeight}px`;
-  }
-
-  function resetHideNav(): void {
-    currentTop = window.scrollY;
-    if (currentTop - previousTop > scrollDelta && currentTop > scrollOffset) {
-      hideNavScrollDown();
+  // Listen for key events
+  window.addEventListener('keyup', (event: KeyboardEvent) => {
+    const key = event.key?.toLowerCase();
+    if (key === 'escape' && menuTrigger.getAttribute('aria-expanded') === 'true' && isVisible(menuTrigger)) {
+      focusMenu = menuTrigger;
+      menuTrigger.click();
     } else if (
-      previousTop - currentTop > scrollDelta ||
-      (previousTop - currentTop > 0 && currentTop < scrollOffset)
+      key === 'tab' &&
+      menuTrigger.getAttribute('aria-expanded') === 'true' &&
+      isVisible(menuTrigger) &&
+      !document.activeElement?.closest('.js-f-header')
     ) {
-      hideNavScrollUp();
-    } else if (previousTop - currentTop > 0 && subNav.length > 0 && subNav[0].getBoundingClientRect().top > 0) {
-      setTranslate(subNav[0] as HTMLElement, '0%');
+      menuTrigger.click();
     }
+  });
 
-    if (navIsFixed) {
-      const scrollTop = window.scrollY || window.pageYOffset;
-      (mainNav[0] as HTMLElement).classList.toggle('hide-nav--has-bg', scrollTop > headerHeight + mainNavTop);
+  // Dropdown button click
+  flexHeader.addEventListener('click', (event) => {
+    const btnLink = (event.target as HTMLElement).closest('.js-f-header__dropdown-control');
+    if (!btnLink) return;
+    const isExpanded = btnLink.getAttribute('aria-expanded') === 'true';
+    btnLink.setAttribute('aria-expanded', String(!isExpanded));
+  });
+
+  // Mouseout event for dropdowns
+  flexHeader.addEventListener('mouseout', (event) => {
+    const btnLink = (event.target as HTMLElement).closest('.js-f-header__dropdown-control');
+    if (!btnLink || getLayout(flexHeader) === 'mobile') return;
+    btnLink.setAttribute('aria-expanded', 'false');
+  });
+
+  // Focusout event for dropdowns
+  flexHeader.addEventListener('focusin', (event) => {
+    const btnLink = (event.target as HTMLElement).closest('.js-f-header__dropdown-control');
+    const dropdown = (event.target as HTMLElement).closest('.f-header__dropdown');
+    if (dropdown || (btnLink && btnLink.hasAttribute('aria-expanded')) || getLayout(flexHeader) === 'mobile') return;
+
+    const openDropdown = flexHeader.querySelector('.js-f-header__dropdown-control[aria-expanded="true"]') as NullableHTMLElement;
+    openDropdown?.setAttribute('aria-expanded', 'false');
+  });
+
+  // Listen for resize events
+  window.addEventListener('resize', debounce(() => {
+    if (!isVisible(menuTrigger) && flexHeader.classList.contains('f-header--expanded')) {
+      menuTrigger.click();
     }
-    previousTop = currentTop;
-    scrolling = false;
+    resetFlexHeaderOffset(flexHeader);
+  }, 500));
+}
+function getFirstFocusableElement(flexHeader: HTMLElement): NullableHTMLElement {
+  const nav = flexHeader.querySelector('.f-header__nav') as NullableHTMLElement;
+  if (!nav) return null;
+
+  const focusableElements = nav.querySelectorAll<HTMLElement>(
+    '[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary'
+  );
+
+  return Array.from(focusableElements).find(isVisible) || null;
+}
+
+function toggleMenuNavigation(
+  flexHeader: HTMLElement,
+  menuTrigger: HTMLElement,
+  firstFocusableElement: NullableHTMLElement,
+  isVisible: boolean
+): void {
+  const nav = flexHeader.querySelector('.f-header__nav') as NullableHTMLElement;
+  nav?.classList.toggle('f-header__nav--is-visible', isVisible);
+  flexHeader.classList.toggle('f-header--expanded', isVisible);
+  menuTrigger.setAttribute('aria-expanded', String(isVisible));
+
+  if (isVisible && firstFocusableElement) {
+    firstFocusableElement.focus();
   }
+}
 
-  function hideNavScrollDown(): void {
-    if (subNav.length > 0 && subNav[0].getBoundingClientRect().top > headerHeight) return;
-    if (triggerMobile && triggerMobile.getAttribute('aria-expanded') === 'true') return;
-    if (mainNav.length > 0 && (!navOpenClasses || !checkNavExpanded())) {
-      setTranslate(mainNav[0] as HTMLElement, '-100%');
-      mainNav[0].addEventListener('transitionend', addOffCanvasClass);
-    }
-    if (subNav.length > 0) setTranslate(subNav[0] as HTMLElement, `-${headerHeight}px`);
-  }
+function resetFlexHeaderOffset(flexHeader: HTMLElement): void {
+  const offset = flexHeader.getBoundingClientRect().top;
+  document.documentElement.style.setProperty('--f-header-offset', `${offset}px`);
+}
 
-  function hideNavScrollUp(): void {
-    if (mainNav.length > 0) {
-      setTranslate(mainNav[0] as HTMLElement, '0%');
-      mainNav[0].classList.remove('hide-nav--off-canvas');
-      mainNav[0].removeEventListener('transitionend', addOffCanvasClass);
-    }
-    if (subNav.length > 0) setTranslate(subNav[0] as HTMLElement, '0%');
-  }
+function setAriaButtons(flexHeader: HTMLElement): void {
+  const btnDropdown = flexHeader.querySelectorAll('.js-f-header__dropdown-control') as NodeListOf<HTMLElement>;
+  btnDropdown.forEach((btn, index) => {
+    const dropdown = btn.nextElementSibling as HTMLElement;
+    let id = dropdown.id || `f-header-dropdown-${index}`;
+    dropdown.id = id;
+    btn.setAttribute('aria-controls', id);
+  });
+}
 
-  function addOffCanvasClass(): void {
-    if (mainNav[0]) {
-      mainNav[0].removeEventListener('transitionend', addOffCanvasClass);
-      mainNav[0].classList.add('hide-nav--off-canvas');
-    }
-  }
+/***************************************
+ * Debounce Utility
+ ***************************************/
+function debounce(func: Function, wait: number): (...args: any[]) => void {
+  let timeout: ReturnType<typeof setTimeout>;
+  return (...args: any[]) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
 
-  function setTranslate(element: HTMLElement, val: string): void {
-    element.style.transform = `translateY(${val})`;
-  }
+/***************************************
+ * Main Initialization
+ ***************************************/
+function initializeNavigation(): void {
+  initializeAnimatedMenuButtons();
+  initializeFlexHeader();
+}
 
-  function getTriggerMobileMenu(): HTMLElement | null {
-    if (hidingNav.length < 1) return null;
-    const triggerMobileClass = hidingNav[0].getAttribute('data-mobile-trigger');
-    if (!triggerMobileClass) return null;
-    if (triggerMobileClass.startsWith('#')) {
-      return document.getElementById(triggerMobileClass.replace('#', ''));
-    } else {
-      const elements = hidingNav[0].getElementsByClassName(triggerMobileClass);
-      return elements.length > 0 ? (elements[0] as HTMLElement) : null;
-    }
-  }
-
-  function createPrevElement(): HTMLElement | null {
-    if (mainNav.length < 1) return null;
-    const newElement = document.createElement('div');
-    newElement.setAttribute('aria-hidden', 'true');
-    mainNav[0].parentElement?.insertBefore(newElement, mainNav[0]);
-    const prevElement = mainNav[0].previousElementSibling as HTMLElement;
-    prevElement.style.opacity = '0';
-    return prevElement;
-  }
-
-  function getMainNavTop(): void {
-    if (!prevElement) return;
-    mainNavTop = prevElement.getBoundingClientRect().top + window.scrollY;
-  }
-
-  function checkNavExpanded(): boolean {
-    return navOpenArrayClasses.some((cls) => mainNav[0].classList.contains(cls.trim()));
-  }
-/*******************************************************************************/
-//Moblie Navigation
-(function () {
-    const menuBtns = document.getElementsByClassName('js-anim-menu-btn') as HTMLCollectionOf<HTMLElement>;
-
-    if (menuBtns.length > 0) {
-      for (let i = 0; i < menuBtns.length; i++) {
-        initMenuBtn(menuBtns[i]);
-      }
-
-      function initMenuBtn(btn: HTMLElement): void {
-        btn.addEventListener('click', (event: MouseEvent) => {
-          event.preventDefault();
-
-          const status = !btn.classList.contains('anim-menu-btn--state-b');
-          btn.classList.toggle('anim-menu-btn--state-b', status);
-
-          const customEvent = new CustomEvent('anim-menu-btn-clicked', { detail: status });
-          btn.dispatchEvent(customEvent);
-        });
-      }
-    }
-
-    document.addEventListener('anim-menu-btn-clicked', (event: Event) => {
-      const customEvent = event as CustomEvent;
-      const nav = document.querySelector('.f-header__nav');
-      const body = document.body;
-
-      if (customEvent.detail) {
-        // Show the navigation menu
-        nav?.classList.add('f-header__nav--is-visible');
-        body.classList.add('no-scroll');
-      } else {
-        // Hide the navigation menu
-        nav?.classList.remove('f-header__nav--is-visible');
-        body.classList.remove('no-scroll');
-      }
-    });
-  })();
+initializeNavigation();
 </script>
