@@ -18,7 +18,7 @@ export default {
         'introText': '11rem',
       },
       fontSize: {
-        'introHeading' : '12rem',
+        'introHeading' : '11.9rem',
       },
     },
   },
