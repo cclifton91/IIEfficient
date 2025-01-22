@@ -4,6 +4,7 @@ import Layout from "../layouts/Base.astro";
 import Nav from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro"; 
 import Intro from "../components/Intro.astro";
+import Projects from "../components/Projects.astro";
 
 import cookies from '../assets/Cookieslogo.png';
 import hawks from '../assets/HawksLogo.png';
@@ -45,5 +46,6 @@ const navLinks = [
     aboutText2="With over three years of professional experience, our team is dedicated to capturing the heart of athletics and business storytelling. From showcasing the determination of a game to highlighting the passion of an athlete or elevating a brand's message, every project is an opportunity to create something extraordinary."
     logos={logos}
   />
+  <Projects />
   <Footer slot="footer"/>
 </Layout>

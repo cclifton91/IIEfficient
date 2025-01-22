@@ -22,13 +22,13 @@ const {
 ---
 
 
-<div id="home">
-  <div class="[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)]w- mb-8 lg:mb-12">
+<div>
+  <div class="[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)]w-mb-8 lg:mb-12">
     <h1 class="text-left font-display text-textColor font-extrabold capitalize text-[10vw] lg:text-[12vw] leading-none">{mainTitle}</h2>
-    <p class="text-left font-body text-primary font-bold text-[2vw] lg:text-[2vw] capitalize">{subTitle}</p>
+    <h3 class="text-left font-body text-primary font-bold text-[2vw] lg:text-[2vw] capitalize">{subTitle}</h3>
   </div>
 
-  <div class="immerse-section-tr pt-5 lg:pt-8 js-immerse-section-tr">
+  <div class="immerse-section-tr pt-5 lg:pt-8 js-immerse-section-tr" id="home">
     <div class="immerse-section-tr__media js-immerse-section-tr__media">
       <div class="[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] w-full">
         <figure class="immerse-section-tr__figure immerse-section-tr__figure--3-4 md:hidden js-immerse-section-tr__figure">
@@ -42,7 +42,7 @@ const {
     </div>
   
     <section class="immerse-section-tr__content bg-background py-12 lg:py-20 mt-8 lg:mt-12 js-immerse-section-tr__content" id="about">
-      <div class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-lg md:max-w-3xl">
+      <div class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl">
         <section class="customer-logos relative z-[1]">
           <div class="w-full mx-auto ">
             <hr class="mb-6">
@@ -56,16 +56,32 @@ const {
             <hr class="mt-6">
           </div>
         </section>
-        <div class="mt-14">
-          <h2 class="text-left text-6xl md:text-8xl text-textColor font-bold font-display CAPITALIZE">{aboutTitle}</h1>
-          <br>
-          <p class="text-lg text-textColor font-body mb-4">
-            {aboutText1} 
-          </p>
-          <p class="text-lg text-textColor font-body">
-            {aboutText2}
-          </p>
-        </div>
+        <section>
+          <div class="mt-20">
+            <h2 class="text-left text-[6vw] lg:text-[6vw] text-textColor font-bold font-display leading-none capitalize">{aboutTitle}</h2>
+            <h3 class="text-left text-[2vw] lg:text-[2vw] text-primary font-bold font-body leading-none capitalize">WITH THE BEST DIGITAL CONTENT</h3>
+            <br>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="col-span-2 lg:col-span-1">
+              <p class="text-lg text-textColor font-body mb-4">
+                {aboutText1} 
+              </p>
+              <p class="text-lg text-textColor font-body">
+                {aboutText2}
+              </p>
+            </div>
+            <div class="col-span-2 lg:col-span-1 lg:text-right ">
+              <span class="text-textColor mb-4 mb:mt-4 font-body text-bg-fx text-bg-fx--underline">1. Something about what you do here</span>
+              <br>
+              <br>
+              <span class="text-textColor mb-4 text-bg-fx font-body text-bg-fx--underline">2. Something about what you do here</span>
+              <br>
+              <br>
+              <span class="text-textColor text-bg-fx font-body text-bg-fx--underline">3. Something about what you do here</span>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   </div>  
@@ -132,6 +148,47 @@ const {
 }
 .immerse-section-tr--disabled .immerse-section-tr__content::before {
   opacity: 1;
+}
+.text-bg-fx {
+  background-repeat: no-repeat;
+  will-change: background-size;
+  transition: background-size 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.text-bg-fx:hover {
+  background-size: 100% 100%;
+}
+
+.text-bg-fx--scale-x {
+  @apply py-0.5 lg:py-1 px-0;
+  background-image: linear-gradient(hsla(245 58% 51% / 0.2), hsla(245 58% 51% / 0.2));
+  background-size: 0% 100%;
+}
+
+.text-bg-fx--scale-y {
+  text-decoration: none;
+  background-image: linear-gradient(hsla(245 58% 51% / 0.2), hsla(245 58% 51% / 0.2));
+  background-size: 100% 2px;
+  background-position: center bottom;
+}
+
+.text-bg-fx--underline,
+.text-bg-fx--underline-bold {
+  text-decoration: none;
+  background-size: 0% 100%;
+}
+
+.text-bg-fx--underline {
+  /* text underline size = 1px */
+  background-image: linear-gradient(transparent calc(100% - 3px), currentColor calc(100% - 3px), currentColor calc(100% - 2px), transparent 2px);
+}
+
+.text-bg-fx--underline-bold {
+  background-image: linear-gradient(transparent 50%, hsla(245 58% 51% / 0.2) 50%);
+}
+
+.text-bg-fx--text-shadow {
+  /* you can use this with the .text-bg-fx--underline effect */
+  text-shadow: 1.5px 1px hsl(0, 0%, 100%), -1.5px 1px hsl(0, 0%, 100%), 0px 1px hsl(0, 0%, 100%);
 }
 </style>
 
