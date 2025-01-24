@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Base.astro';
+import Nav from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
 import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
@@ -21,6 +23,13 @@ interface Project {
   render: () => Promise<{ Content: any }>;
 }
 
+const navLinks = [
+  { href: '/#home', text: 'Home' },
+  { href: '/#about', text: 'About' },
+  { href: '/#projects', text: 'Projects' },
+  { href: '/#contact', text: 'Contact' }
+];
+
 const { project } = Astro.props as { project: Project };
 const { Content } = await project.render();
 
@@ -31,11 +40,12 @@ const seo = {
 ---
 
 <Layout seo={seo}>
-  <article class="prose max-w-3xl mx-auto prose-figcaption:text-center prose-a:text-indigo-700 prose-img:mx-auto">
-    <h1>{project.data.title}</h1>
-    <p class="text-lg lg:text-2xl text-gray-400">{project.data.author}</p>
+  <Nav navLinks={navLinks} logo="TriangleLogo" slot="header"/>
+  <article class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mt-20 prose prose-figcaption:text-center prose-img:mx-auto">
+    <h1 class="text-left font-display text-textColor font-extrabold capitalize text-[4vw] lg:text-[8vw] leading-none">{project.data.title}</h1>
+    <p class="mt-4 text-left text-[2vw] text-primary font-bold font-body">{project.data.author}</p>
 
-    <p>{project.data.description}</p>
+    <p class="mt-14">{project.data.description}</p>
   
     <figure class="mb-5 lg:mb-6 xl:w-[calc(100%_+_10.5em)] xl:ml-[-5.25em]">
       <video src={project.data.video} autoplay loop muted playsinline></video>

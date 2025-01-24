@@ -13,15 +13,8 @@
         "draft": {
           "type": "boolean"
         },
-        "ogImage": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "string"
-            }
-          ]
+        "cover": {
+          "type": "string"
         },
         "description": {
           "type": "string"
@@ -36,6 +29,7 @@
       "required": [
         "title",
         "author",
+        "cover",
         "description"
       ],
       "additionalProperties": false

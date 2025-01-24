@@ -3,6 +3,7 @@ title: First Post of The Project
 author: Camille Clifton
 slug: firstpostoftheproject
 draft: false
+cover: "./images/indoorgolf.png"
 description: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius, temporibus, aut officia minus sequi quae <a href="#0">molestias beatae</a>, qui ipsa mollitia alias accusamus voluptate ratione provident numquam iure quia aliquam tempore possimus consequatur vel. Iure atque enim in? Magnam quis cupiditate quia labore quaerat, eligendi nobis, ab similique harum nostrum nulla aliquam dolore adipisci ut. Eaque doloremque iure veniam nobis asperiores.
 video: ""
 ---

@@ -1,17 +1,111 @@
 ---
 import { getCollection } from 'astro:content';
 const projects = await getCollection('projects');
+import { Image } from 'astro:assets';
 ---
 
 <div class="grid grid-cols-12 gap-3 lg:gap-5 mt-8">
   {projects.map((project) => (
-    <a href={`/projects/${project.slug}`} class="card-v9 bg-accent rounded col-span-12 lg:col-span-8" data-theme="default" aria-labelledby={`card-title-${project.slug}`}>
-      <div class="card-v9__content p-5 lg:p-8">
+    <a href={`/projects/${project.slug}`} class="card-v9 rounded col-span-12 lg:col-span-8 relative overflow-hidden" aria-labelledby={`$project.slug}`}>
+      {/* Background Image */}
+      <div class="absolute inset-0 z-0">
+        <Image 
+          src={project.data.cover} 
+          alt={project.data.title} 
+          class="object-cover"
+        />
+      </div>
+      {/* Content */}
+      <div class="card-v9__content relative z-10 p-5 lg:p-8">
         <div class="pb-32 lg:pb-52 max-w-lg">
-          <p class="text-sm lg:text-base text-gray-900/50 mb-1.5 lg:mb-2">Project</p>
-          <h1 id={`card-title-${project.slug}`} class="text-2xl lg:text-4xl">{project.data.title}</h1>
+          <h1 id={`card-title-${project.slug}`} class="text-2xl lg:text-4xl font-display text-white">{project.data.title}</h1>
+        </div>
+  
+        <div class="mt-auto">
+          <span class="card-v9__btn"><i class="not-italic">Read more</i></span>
         </div>
       </div>
     </a>
   ))}
 </div>
+
+
+<style>
+  .card-v9 {
+  display: block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  color: inherit;
+  @apply bg-gray-300;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  @apply shadow;
+  transition: 0.3s;
+}
+.card-v9:hover {
+  @apply shadow-md;
+}
+
+.card-v9__content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.card-v9__btn {
+  position: relative;
+  display: inline-block;
+  @apply py-2 lg:py-3 px-3 lg:px-5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.card-v9__btn i {
+  position: relative;
+  z-index: 2;
+  @apply text-white;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card-v9__btn::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @apply rounded;
+  @apply bg-secondary/80;
+  opacity: 0;
+  -webkit-transform: translateY(25%);transform: translateY(25%);
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.card-v9:hover .card-v9__btn i {
+  opacity: 1;
+}
+.card-v9:hover .card-v9__btn::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-v9--overlay-bg::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @apply bg-black/50;
+  transition: background-color 0.3s;
+}
+.card-v9--overlay-bg:hover::before {
+  @apply bg-black/80;
+}
+</style>
