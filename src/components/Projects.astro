@@ -1,62 +1,11 @@
 ---
-
+import Posts from "../components/Posts.astro";
 ---
 <div class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mt-20">
   <div>
     <h2 class="text-left text-[6vw] lg:text-[6vw] text-textColor font-bold font-display capitalize leading-none">PROJECTS</h1>
     <h3 class="text-left text-[2vw] text-primary font-bold font-body">OUR MOST RECENT WORK</h3>
   </div>
-  <div class="grid grid-cols-12 gap-3 lg:gap-5 mt-8">
-    <a href="#0" class="card-v9 bg-accent rounded col-span-12 lg:col-span-8" data-theme="default" aria-labelledby="card-title-1">
-      <div class="card-v9__content p-5 lg:p-8">
-        <div class="pb-32 lg:pb-52 max-w-lg">
-          <p class="text-sm lg:text-base text-gray-900/50 mb-1.5 lg:mb-2">Travels</p>
-          <h1 id="card-title-1" class="text-2xl lg:text-4xl">Lorem ipsum dolor sit amet consectetur adipisicing.</h1>
-        </div>
-  
-        <div class="mt-auto">
-          <span class="card-v9__btn"><i class="not-italic">Read more</i></span>
-        </div>
-      </div>
-    </a>
-    
-    <a href="#0" class="card-v9 bg-accent rounded col-span-12 lg:col-span-4" data-theme="default" aria-labelledby="card-title-2">
-      <div class="card-v9__content p-5 lg:p-8">
-        <div class="pb-32 lg:pb-52 max-w-lg">
-          <p class="text-sm lg:text-base text-gray-900/50 mb-1.5 lg:mb-2">Experiences</p>
-          <h1 id="card-title-2" class="text-2xl lg:text-4xl">Lorem ipsum dolor sit amet consectetur.</h1>
-        </div>
-  
-        <div class="mt-auto">
-          <span class="card-v9__btn"><i class="not-italic">Read more</i></span>
-        </div>
-      </div>
-    </a>
-
-    <a href="#0" class="card-v9 bg-accent rounded col-span-12 lg:col-span-4" data-theme="default" aria-labelledby="card-title-3">
-      <div class="card-v9__content p-5 lg:p-8">
-        <div class="pb-32 lg:pb-52 max-w-lg">
-          <p class="text-sm lg:text-base text-gray-900/50 mb-1.5 lg:mb-2">Experiences</p>
-          <h1 id="card-title-3" class="text-2xl lg:text-4xl">Lorem ipsum dolor sit amet.</h1>
-        </div>
-  
-        <div class="mt-auto">
-          <span class="card-v9__btn"><i class="not-italic">Read more</i></span>
-        </div>
-      </div>
-    </a>
-
-    <a href="#0" class="card-v9 bg-accent rounded col-span-12 lg:col-span-8" data-theme="default" aria-labelledby="card-title-4">
-      <div class="card-v9__content p-5 lg:p-8">
-        <div class="pb-32 lg:pb-52 max-w-lg">
-          <p class="text-sm lg:text-base text-gray-900/50 mb-1.5 lg:mb-2">Travels</p>
-          <h1 id="card-title-4" class="text-2xl lg:text-4xl">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h1>
-        </div>
-  
-        <div class="mt-auto">
-          <span class="card-v9__btn"><i class="not-italic">Read more</i></span>
-        </div>
-      </div>
-    </a>
-  </div>
+  <!--Posts here-->
+  <Posts />
 </div>
