@@ -1,0 +1,21 @@
+collections:
+  - name: "projects"
+    label: "Projects"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "author", label: "Author", widget: "string" }
+      - { name: "draft", label: "Draft", widget: "boolean", required: false }
+      - { name: "ogImage", label: "OpenGraph Image", widget: "image", required: false }
+      - { name: "description", label: "Description", widget: "text" }
+      - { name: "video", label: "Video", widget: "file", required: false, media_library: { allow_multiple: false } }
+
+  - name: "index"
+    label: "Homepage"
+    file: "src/pages/index.astro"
+    fields:
+      - { name: "h1", label: "Main Heading (H1)", widget: "string" }
+      - { name: "h2", label: "Subheading (H2)", widget: "string" }
+      - { name: "description", label: "About Section Description", widget: "text" }
