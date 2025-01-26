@@ -4,6 +4,7 @@ author: Camille Clifton
 slug: firstpostoftheproject
 draft: false
 cover: ./images/indoorgolf.png
+video: /assets/video/IIEfficientIntro.mp4
 description: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius,
   temporibus, aut officia minus sequi quae <a href="#0">molestias beatae</a>,
   qui ipsa mollitia alias accusamus voluptate ratione provident numquam iure
@@ -28,7 +29,7 @@ Per finibus libero quisque proin fermentum sem. Augue conubia orci dis turpis he
     
 *   heirloom that nobody can buy
     
-*   obscure product from Chervokya  
+*   obscure product from Chervokya
     
 
 ## Where
