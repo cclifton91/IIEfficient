@@ -1,6 +1,6 @@
 media:
-  - input: src/assets
-  - output: /assets
+  - input: "src/assets"
+  - output: "/assets"
 
 content:
   - name: "projects"
@@ -16,11 +16,3 @@ content:
       - { name: "description", label: "Description", type: "text" }
       - { name: "video", label: "Video", type: "string" }
       - { name: "body", label: "Content", type: "rich-text" }
-
-  - name: "index"
-    label: "Homepage"
-    file: "src/pages/index.astro"
-    fields:
-      - { name: "h1", label: "Main Heading (H1)", widget: "string" }
-      - { name: "h2", label: "Subheading (H2)", widget: "string" }
-      - { name: "description", label: "About Section Description", widget: "text" }
