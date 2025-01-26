@@ -1,16 +1,21 @@
-collections:
+media:
+  - input: src/assets
+  - output: /assets
+
+content:
   - name: "projects"
     label: "Projects"
-    folder: "src/content/projects"
-    create: true
-    slug: "{{slug}}"
+    type: "collection"
+    path: "src/content/projects"
     fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "author", label: "Author", widget: "string" }
-      - { name: "draft", label: "Draft", widget: "boolean", required: false }
-      - { name: "ogImage", label: "OpenGraph Image", widget: "image", required: false }
-      - { name: "description", label: "Description", widget: "text" }
-      - { name: "video", label: "Video", widget: "file", required: false, media_library: { allow_multiple: false } }
+      - { name: "title", label: "Title", type: "string", required: true }
+      - { name: "author", label: "Author", type: "string" }
+      - { name: "slug", label: "Slug", type: "string" }
+      - { name: "draft", label: "Draft", type: "boolean" }
+      - { name: "cover", label: "Cover Image", type: "image" }
+      - { name: "description", label: "Description", type: "text" }
+      - { name: "video", label: "Video", type: "string" }
+      - { name: "body", label: "Content", type: "rich-text" }
 
   - name: "index"
     label: "Homepage"
