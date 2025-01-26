@@ -41,7 +41,7 @@ content:
     type: "file"
     path: "src/pages/index.astro"
     fields: 
-      - name: "src/pages/index.astro"
+      - name: "seo"
         label: "SEO Settings"
         type: "object"
         fields:
