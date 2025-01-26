@@ -1,6 +1,6 @@
 media:
-  input: src/assets
-  output: /assets
+  - input: "src/assets"
+  - output: "/assets"
 
 content:
   - name: "projects"
@@ -8,11 +8,32 @@ content:
     type: "collection"
     path: "src/content/projects"
     fields:
-      - { name: "title", label: "Title", type: "string", required: true }
-      - { name: "author", label: "Author", type: "string" }
-      - { name: "slug", label: "Slug", type: "string" }
-      - { name: "draft", label: "Draft", type: "boolean" }
-      - { name: "cover", label: "Cover Image", type: "image" }
-      - { name: "description", label: "Description", type: "text" }
-      - { name: "video", label: "Video", type: "image" }
-      - { name: "body", label: "Content", type: "rich-text" }
+      - name: "title"
+        label: "Title"
+        type: "string"
+        required: true 
+      - name: "author"
+        label: "Author" 
+        type: "string" 
+      - name: "slug"
+        label: "Slug"
+        type: "string" 
+      - name: "draft"
+        label: "Draft"
+        type: "boolean" 
+      - name: "cover"
+        label: "Cover Image"
+        type: "image"
+        
+      - name: "video" 
+        label: "Video"
+        type: "image"
+        options:
+          path: "/public/assets/videos"
+          extensions: ["mp4"] 
+      - name: "description" 
+        label: "Description"
+        type: "text" 
+      - name: "body"
+        label: "Content"
+        type: "rich-text" 
