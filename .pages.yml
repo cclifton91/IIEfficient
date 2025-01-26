@@ -36,3 +36,18 @@ content:
       - name: "body"
         label: "Content"
         type: "rich-text" 
+  - name: "index"
+    label: "Home Page"
+    type: "file"
+    path: "src/pages/index.astro"
+    fields: 
+      - name: "src/pages/index.astro"
+        label: "SEO Settings"
+        type: "object"
+        fields:
+        - name: "title"
+          label: "Title"
+          type: "string"
+        - name: "description"
+          label: "Description"
+          type: "string"
