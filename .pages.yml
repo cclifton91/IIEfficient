@@ -14,5 +14,5 @@ content:
       - { name: "draft", label: "Draft", type: "boolean" }
       - { name: "cover", label: "Cover Image", type: "image" }
       - { name: "description", label: "Description", type: "text" }
-      - { name: "video", label: "Video", type: "string" }
+      - { name: "video", label: "Video", type: "image" }
       - { name: "body", label: "Content", type: "rich-text" }
