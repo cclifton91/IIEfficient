@@ -5,28 +5,31 @@ import { Image } from 'astro:assets';
 ---
 
 <div class="grid grid-cols-12 gap-3 lg:gap-5 mt-8">
-  {projects.map((project) => (
-    <a href={`/projects/${project.slug}`} class="card-v9 rounded col-span-12 lg:col-span-8 relative overflow-hidden" aria-labelledby={`$project.slug}`}>
-      {/* Background Image */}
-      <div class="absolute inset-0 z-0">
-        <Image 
-          src={project.data.cover} 
-          alt={project.data.title} 
-          class="object-cover"
-        />
-      </div>
-      {/* Content */}
-      <div class="card-v9__content relative z-10 p-5 lg:p-8">
-        <div class="pb-32 lg:pb-52 max-w-lg">
-          <h1 id={`card-title-${project.slug}`} class="text-2xl lg:text-4xl font-display text-white">{project.data.title}</h1>
+  {projects.map((project, index) => {
+    const colSpanClass = index % 2 === 0 ? 'lg:col-span-8' : 'lg:col-span-4';
+    return (
+      <a href={`/projects/${project.slug}`} class={`card-v9 rounded col-span-12 ${colSpanClass} relative overflow-hidden`} aria-labelledby={`$project.slug}`}>
+        {/* Background Image */}
+        <div class="absolute inset-0 z-0">
+          <Image 
+            src={project.data.cover} 
+            alt={project.data.title} 
+            class="object-cover"
+          />
         </div>
-  
-        <div class="mt-auto">
-          <span class="card-v9__btn"><i class="not-italic">Read more</i></span>
+        {/* Overlay */}
+        <div class="card-v9__content relative z-10 p-5 lg:p-8">
+          <div class="pb-32 lg:pb-52 max-w-lg">
+            <h1 id={`card-title-${project.slug}`} class="text-2xl lg:text-4xl font-display text-white">{project.data.title}</h1>
+          </div>
+    
+          <div class="mt-auto">
+            <span class="card-v9__btn"><i class="not-italic">Read more</i></span>
+          </div>
         </div>
-      </div>
-    </a>
-  ))}
+      </a>
+    );
+  })}
 </div>
 
 
@@ -80,7 +83,7 @@ import { Image } from 'astro:assets';
   width: 100%;
   height: 100%;
   @apply rounded;
-  @apply bg-secondary/80;
+  @apply bg-secondary;
   opacity: 0;
   -webkit-transform: translateY(25%);transform: translateY(25%);
   transition: opacity 0.3s, transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);

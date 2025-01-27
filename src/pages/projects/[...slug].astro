@@ -19,6 +19,7 @@ interface Project {
     description: string;
     author: string;
     video: string;
+    cover: string;
   };
   render: () => Promise<{ Content: any }>;
 }
@@ -30,7 +31,7 @@ const navLinks = [
   { href: '/#contact', text: 'Contact' }
 ];
 
-const { project } = Astro.props as { project: Project };
+const { project } = Astro.props as unknown as { project: Project };
 const { Content } = await project.render();
 
 const seo = {
@@ -41,17 +42,28 @@ const seo = {
 
 <Layout seo={seo}>
   <Nav navLinks={navLinks} logo="TriangleLogo" slot="header"/>
-  <article class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mt-20 prose prose-figcaption:text-center prose-img:mx-auto">
-    <h1 class="text-left font-display text-textColor font-extrabold capitalize text-[4vw] lg:text-[8vw] leading-none">{project.data.title}</h1>
-    <p class="mt-4 text-left text-[2vw] text-primary font-bold font-body">{project.data.author}</p>
-
-    <p class="mt-14">{project.data.description}</p>
+  <article class="py-8 lg:py-12 text-textColor">
+    <header class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-xl mb-8 lg:mb-12">
+      <div class="text-center mb-5 lg:mb-8">
+        <h1 class="text-8xl mb-3 font-display font-bold">{project.data.title}</h1>
+        <p class="mt-4 text-lg text-primary text-bold text-body">{project.data.description}</p>
+      </div>
+    </header>
   
-    <figure class="mb-5 lg:mb-6 xl:w-[calc(100%_+_10.5em)] xl:ml-[-5.25em]">
-      <video src={project.data.video} autoplay loop muted playsinline></video>
-      <figcaption>Image caption</figcaption>
+    <figure class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-7xl mb-8 lg:mb-12">
+      {project.data.video ? (
+        <video class="prose-video" src={project.data.video} autoplay loop muted playsinline></video>
+      ) : (
+        <Image src={project.data.cover} alt={project.data.title} width={800} height={600} class="prose-img" />
+      )}
     </figure>
-    <Content />
+  
+    <div class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-lg md:max-w-3xl">
+      <div class="prose dark:prose-invert prose-headings:font-display prose-h2:text-4xl prose-h3:text-2xl prose-base font-body mx-auto prose-figcaption:text-center prose-a:text-secondary prose-img:mx-auto">
+        <Content />
+      </div>
+    </div>  
   </article>
+</Layout>
 </Layout>
 

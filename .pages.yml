@@ -28,7 +28,7 @@ content:
         label: "Video"
         type: "image"
         options:
-          path: "/assets/videos"
+          path: "/assets"
           extensions: ["mp4"] 
       - name: "description" 
         label: "Description"

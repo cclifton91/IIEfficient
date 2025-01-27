@@ -18,9 +18,11 @@ export default {
         'introText': '11rem',
       },
       fontSize: {
-        'introHeading' : '11.9rem',
+        'introHeading' : '13.9rem',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };

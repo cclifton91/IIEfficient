@@ -15,7 +15,7 @@ const {
   aboutTitle,
   aboutText1,
   aboutText2,
-  videoSrc = "/assets/videos/IIEfficientIntro.mp4",
+  videoSrc = "/assets/IIEfficientIntro.mp4",
   logos = [] // Array of logo objects with src and alt
 } = Astro.props;
 
@@ -24,13 +24,13 @@ const {
 
 <div>
   <div class="[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)]w-mb-8 lg:mb-12">
-    <h1 class="text-left font-display text-textColor font-extrabold capitalize text-[10vw] lg:text-[12vw] leading-none">{mainTitle}</h2>
-    <h3 class="text-left font-body text-primary font-bold text-[2vw] lg:text-[2vw] capitalize">{subTitle}</h3>
+    <h1 class="text-center font-display text-textColor font-extrabold capitalize text-[10vw] lg:text-[14vw] leading-none">{mainTitle}</h2>
+    <h3 class="text-center font-body text-primary font-bold text-[2vw] lg:text-[2vw] capitalize">{subTitle}</h3>
   </div>
 
   <div class="immerse-section-tr pt-5 lg:pt-8 js-immerse-section-tr" id="home">
     <div class="immerse-section-tr__media js-immerse-section-tr__media">
-      <div class="[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] w-full">
+      <div class="w-full">
         <figure class="immerse-section-tr__figure immerse-section-tr__figure--3-4 md:hidden js-immerse-section-tr__figure">
           <video src={videoSrc} autoplay loop muted playsinline></video>
         </figure>
@@ -41,11 +41,10 @@ const {
       </div>
     </div>
   
-    <section class="immerse-section-tr__content bg-background py-12 lg:py-20 mt-8 lg:mt-12 js-immerse-section-tr__content" id="about">
-      <div class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl">
-        <section class="customer-logos relative z-[1]">
+    <section class="immerse-section-tr__content bg-background py-12 lg:py-20 mt-8 lg:mt-12 js-immerse-section-tr__content h-screen" id="about">
+      <div class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl border-t-2 border-textColor">
+        <section class="customer-logos relative z-[1] mt-10">
           <div class="w-full mx-auto ">
-            <hr class="mb-6">
             <ul class="flex flex-wrap justify-center gap-12">
               {logos.map((logo) => (
                 <li>
@@ -53,11 +52,10 @@ const {
                 </li>
               ))}
             </ul>
-            <hr class="mt-6">
           </div>
         </section>
         <section>
-          <div class="mt-20">
+          <div class="mt-16">
             <h2 class="text-left text-[6vw] lg:text-[6vw] text-textColor font-bold font-display leading-none capitalize">{aboutTitle}</h2>
             <h3 class="text-left text-[2vw] lg:text-[2vw] text-primary font-bold font-body leading-none capitalize">WITH THE BEST DIGITAL CONTENT</h3>
             <br>
@@ -70,15 +68,6 @@ const {
               <p class="text-lg text-textColor font-body">
                 {aboutText2}
               </p>
-            </div>
-            <div class="col-span-2 lg:col-span-1 lg:text-right ">
-              <span class="text-textColor mb-4 mb:mt-4 font-body text-bg-fx text-bg-fx--underline">1. Something about what you do here</span>
-              <br>
-              <br>
-              <span class="text-textColor mb-4 text-bg-fx font-body text-bg-fx--underline">2. Something about what you do here</span>
-              <br>
-              <br>
-              <span class="text-textColor text-bg-fx font-body text-bg-fx--underline">3. Something about what you do here</span>
             </div>
           </div>
         </section>
