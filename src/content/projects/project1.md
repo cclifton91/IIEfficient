@@ -3,7 +3,7 @@ title: First Post of The Project
 author: Camille Clifton
 slug: firstpostoftheproject
 draft: false
-cover: /assets/indoorgolf.png
+cover: ./assets/indoorgolf.png
 video: /assets/IIEfficientIntro.mp4
 description: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius,
   temporibus, aut officia minus sequi quae.

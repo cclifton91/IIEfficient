@@ -26,6 +26,8 @@ content:
       - name: "cover"
         label: "Cover Image"
         type: "image"
+        options:
+          path: "/projects/assets"
       - name: "video" 
         label: "Video"
         type: "image"
