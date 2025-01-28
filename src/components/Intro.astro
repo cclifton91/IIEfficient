@@ -15,8 +15,9 @@ const {
   aboutTitle,
   aboutText1,
   aboutText2,
-  videoSrc = "/assets/IIEfficientIntro.mp4",
-  logos = [] // Array of logo objects with src and alt
+  introVideo = "/assets/IIEfficientIntro.mp4",
+  logos = [], // Array of logo objects with src and alt
+  feedVideo = "/assets/InstaPost1.mp4",
 } = Astro.props;
 
 ---
@@ -32,11 +33,11 @@ const {
     <div class="immerse-section-tr__media js-immerse-section-tr__media">
       <div class="w-full">
         <figure class="immerse-section-tr__figure immerse-section-tr__figure--3-4 md:hidden js-immerse-section-tr__figure">
-          <video src={videoSrc} autoplay loop muted playsinline></video>
+          <video src={introVideo} autoplay loop muted playsinline></video>
         </figure>
       
         <figure class="immerse-section-tr__figure immerse-section-tr__figure--16-9 hidden md:block js-immerse-section-tr__figure">
-          <video src={videoSrc} autoplay loop muted playsinline></video>
+          <video src={introVideo} autoplay loop muted playsinline></video>
         </figure>
       </div>
     </div>

@@ -1,10 +1,10 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "../layouts/Base.astro";
 import Nav from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro"; 
 import Intro from "../components/Intro.astro";
 import Projects from "../components/Projects.astro";
+import InstaFeed from "../components/InstaFeed.astro";
 
 import cookies from '../assets/Cookieslogo.png';
 import hawks from '../assets/HawksLogo.png';
@@ -31,6 +31,7 @@ const seo = {
 const navLinks = [
   { href: "#home", text: "Home" },
   { href: "#about", text: "About" },
+  { href: "#feed", text: "Content" },
   { href: "#projects", text: "Projects" },
 ];
 ---
@@ -47,5 +48,6 @@ const navLinks = [
     logos={logos}
   />
   <Projects />
+  <InstaFeed feedVideo="/assets/InstaPost1.mp4"/>
   <Footer slot="footer"/>
 </Layout>

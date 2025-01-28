@@ -1,0 +1,584 @@
+---
+const { feedVideo } = Astro.props;
+---
+
+<section class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mt-20 mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl border-t-2 border-textColor height-100vh" id="feed">
+  <div>
+    <h2 class="text-left text-[6vw] lg:text-[6vw] text-textColor font-bold font-display capitalize leading-none mt-20">OUR CONTENT</h1>
+    <h3 class="text-left text-[2vw] text-primary font-bold font-body">A PEEK AT WHAT WE DO</h3>
+  </div>
+  <div class="overflow-hidden">
+    <div class="carousel carousel-v3 flex flex-col w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-5xl js-carousel mt-16" data-drag="on" data-loop="off" data-overflow-items="on">
+      <p class="sr-only">Carousel items</p>
+  
+      <div class="carousel__wrapper relative">
+        <ol class="carousel__list">
+          <li class="carousel__item">
+            <video src="src/assets/InstaPost1.mp4" autoplay loop muted playsinline></video>
+          </li>
+  
+          <li class="carousel__item bg-secondary">
+            <video src="src/assets/InstaPost2.mp4" autoplay loop muted playsinline></video>
+          </li>
+  
+          <li class="carousel__item bg-secondary">
+            <video src="src/assets/InstaPost3.mp4" autoplay loop muted playsinline></video>
+          </li>
+  
+          <li class="carousel__item bg-secondary">
+            <video src="src/assets/InstaPost4.mp4" autoplay loop muted playsinline></video>
+          </li>
+  
+          <li class="carousel__item bg-secondary">
+            <video src="src/assets/InstaPost5.mp4" autoplay loop muted playsinline></video>
+          </li>
+  
+          <li class="carousel__item bg-secondary">
+            <video src="src/assets/InstaPost6.mp4" autoplay loop muted playsinline></video>
+          </li>
+        </ol>
+  
+        <nav class="no-js:is-hidden">
+          <ul class="absolute top-0 left-0 bottom-0 right-0 pointer-events-none flex items-center justify-between">
+            <li>
+              <button class="carousel-v3__control carousel-v3__control--prev js-carousel__control js-tab-focus">
+                <svg class="icon h-[20px] w-[20px] inline-block text-inherit fill-current leading-none shrink-0" viewBox="0 0 20 20"><title>Show previous items</title><polyline points="13 2 5 10 13 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+              </button>
+            </li>
+  
+            <li>
+              <button class="carousel-v3__control carousel-v3__control--next js-carousel__control js-tab-focus">
+                <svg class="icon h-[20px] w-[20px] inline-block text-inherit fill-current leading-none shrink-0" viewBox="0 0 20 20"><title>Show next items</title><polyline points="7 2 15 10 7 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+  --carousel-grid-gap: 0.5rem;
+  --carousel-item-auto-size: 260px;
+  --carousel-transition-duration: 0.5s;
+  }
+  @media (min-width: 64rem) {
+    :root {
+      --carousel-grid-gap: 0.75rem;
+    }
+  }
+  .swipe-content {
+  height: 280px;
+  width: 280px;
+  @apply bg-gray-400;
+  @apply rounded;
+  cursor: default;
+  transition: background 0.2s;
+  }
+  .swipe-content:active {
+    @apply bg-gray-500;
+  }
+  .carousel {
+    position: relative;
+  }
+
+  .carousel__list {
+    display: flex;
+    flex-wrap: nowrap;
+    will-change: transform;
+  }
+
+  .carousel__item {
+    flex-shrink: 0;
+    width: var(--carousel-item-auto-size);
+    margin-right: var(--carousel-grid-gap);
+    margin-bottom: var(--carousel-grid-gap);
+  }
+
+  .carousel__list--animating {
+    transition-property: -webkit-transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    transition-duration: var(--carousel-transition-duration);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .carousel__item {
+    opacity: 0;
+    margin-bottom: 0;
+  }
+  .carousel--loaded .carousel__item {
+    opacity: 1;
+  }
+  .carousel:not(.carousel--is-dragging) .carousel__list:not(.carousel__list--animating) .carousel__item[tabindex="-1"] > * {
+    visibility: hidden;
+  }
+  .carousel[data-drag=on] .carousel__item {
+    user-select: none;
+  }
+  .carousel[data-drag=on] .carousel__item img {
+    pointer-events: none;
+  }
+
+  .carousel__control {
+    --size: 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    @apply bg-white;
+    border-radius: 50%;
+    @apply shadow-md;
+    z-index: 1;
+    transition: 0.2s;
+  }
+  .carousel__control:active {
+    -webkit-transform: translateY(1px);transform: translateY(1px);
+  }
+  .carousel__control:hover {
+    @apply bg-white;
+    @apply shadow-lg;
+  }
+  .carousel__control[disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+    box-shadow: none;
+  }
+  .carousel__control .icon {
+    --size: 20px;
+    display: block;
+    margin: auto;
+  }
+
+  .carousel__navigation {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 10px);
+    @apply gap-2 lg:gap-3;
+    justify-content: center;
+    align-items: center;
+    @apply mt-3 lg:mt-5;
+  }
+
+  .carousel__nav-item {
+    display: inline-block;
+    @apply my-0 mx-1 lg:mx-1.5;
+  }
+  @supports (grid-area: auto) {
+    .carousel__nav-item {
+      margin: 0;
+    }
+  }
+  .carousel__nav-item button {
+    display: block;
+    position: relative;
+    font-size: 10px;
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    @apply bg-gray-700;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .carousel__nav-item button::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 0.5em);
+    left: calc(50% - 0.5em);
+    font-size: 16px;
+    height: 1em;
+    width: 1em;
+    border-radius: inherit;
+    @apply border border-gray-700;
+    opacity: 0;
+    transform: scale(0);
+    transition: 3s;
+  }
+  .carousel__nav-item button:focus {
+    outline: none;
+  }
+  .carousel__nav-item button:focus::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .carousel__nav-item--selected button {
+    opacity: 1;
+  }
+
+  .carousel__navigation--pagination {
+    grid-template-columns: repeat(auto-fit, 24px);
+  }
+  .carousel__navigation--pagination .carousel__nav-item button {
+    width: 24px;
+    height: 24px;
+    @apply text-white;
+    font-size: 12px;
+    line-height: 24px;
+    @apply rounded;
+    text-align: center;
+  }
+  .carousel__navigation--pagination .carousel__nav-item button:focus {
+    @apply outline outline-indigo-700;
+    outline-offset: 2px;
+  }
+
+  .carousel--hide-controls .carousel__navigation, .carousel--hide-controls .carousel__control {
+    display: none;
+  }
+  .carousel-v3 {
+  --carousel-grid-gap: 0.5rem;
+  --carousel-item-auto-size: 260px;
+  --carousel-transition-duration: 0.5s;
+  }
+  @media (min-width: 64rem) {
+    .carousel-v3 {
+      --carousel-grid-gap: 1rem;
+    }
+  }
+
+  .carousel-v3__control {
+    --size: 60px;
+    height: var(--size);
+    width: var(--size);
+    @apply bg-gray-900/70;
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+  }
+  .carousel-v3__control:hover {
+    @apply bg-gray-900/90;
+  }
+  .carousel-v3__control[disabled] {
+    display: none;
+  }
+  .carousel-v3__control:active {
+    transform: translateY(2px);
+  }
+  .carousel-v3__control .icon {
+    --size: 20px;
+    display: block;
+    @apply text-white;
+  }
+</style>
+
+<script>
+/*******************************************
+ * SwipeContent Class
+ *******************************************/
+ class SwipeContent {
+    private element: HTMLElement;
+    private delta: [number, number] = [0, 0];
+    private dragging = false;
+    private intervalId: number | null = null;
+
+    constructor(element: HTMLElement) {
+      this.element = element;
+      this.init();
+    }
+
+    private init(): void {
+      this.element.addEventListener('mousedown', this.handleEvent.bind(this));
+      this.element.addEventListener('touchstart', this.handleEvent.bind(this), { passive: true });
+    }
+
+    private initDragging(): void {
+      this.element.addEventListener('mousemove', this.handleEvent.bind(this));
+      this.element.addEventListener('touchmove', this.handleEvent.bind(this), { passive: true });
+      this.element.addEventListener('mouseup', this.handleEvent.bind(this));
+      this.element.addEventListener('mouseleave', this.handleEvent.bind(this));
+      this.element.addEventListener('touchend', this.handleEvent.bind(this));
+    }
+
+    private cancelDragging(): void {
+      if (this.intervalId) {
+        window.cancelAnimationFrame(this.intervalId);
+        this.intervalId = null;
+      }
+      this.element.removeEventListener('mousemove', this.handleEvent.bind(this));
+      this.element.removeEventListener('touchmove', this.handleEvent.bind(this));
+      this.element.removeEventListener('mouseup', this.handleEvent.bind(this));
+      this.element.removeEventListener('mouseleave', this.handleEvent.bind(this));
+      this.element.removeEventListener('touchend', this.handleEvent.bind(this));
+    }
+
+    private handleEvent(event: Event): void {
+      switch (event.type) {
+        case 'mousedown':
+        case 'touchstart':
+          this.startDrag(event as MouseEvent | TouchEvent);
+          break;
+        case 'mousemove':
+        case 'touchmove':
+          this.drag(event as MouseEvent | TouchEvent);
+          break;
+        case 'mouseup':
+        case 'mouseleave':
+        case 'touchend':
+          this.endDrag(event as MouseEvent | TouchEvent);
+          break;
+      }
+    }
+
+    private startDrag(event: MouseEvent | TouchEvent): void {
+      this.dragging = true;
+      this.initDragging();
+      const coords = this.getCoordinates(event);
+      this.delta = [coords.x, coords.y];
+      this.emitSwipeEvent('dragStart', this.delta, event.target as HTMLElement);
+    }
+
+    private endDrag(event: MouseEvent | TouchEvent): void {
+      this.cancelDragging();
+      const coords = this.getCoordinates(event);
+      const [dx, dy] = [coords.x, coords.y];
+      this.detectSwipe(dx, dy);
+      this.emitSwipeEvent('dragEnd', [dx, dy]);
+      this.dragging = false;
+    }
+
+    private drag(event: MouseEvent | TouchEvent): void {
+      if (!this.dragging) return;
+
+      const coords = this.getCoordinates(event);
+      const { x, y } = coords;
+      if (!window.requestAnimationFrame) {
+        this.intervalId = window.setTimeout(() => {
+          this.emitSwipeEvent('dragging', [x, y]);
+        }, 250);
+      } else {
+        this.intervalId = window.requestAnimationFrame(() =>
+          this.emitSwipeEvent('dragging', [x, y])
+        );
+      }
+    }
+
+    private detectSwipe(dx: number, dy: number): void {
+      if (Math.abs(dx - this.delta[0]) > 30) {
+        const direction = dx > this.delta[0] ? 'swipeRight' : 'swipeLeft';
+        this.emitSwipeEvent(direction, [dx, dy]);
+      }
+
+      if (Math.abs(dy - this.delta[1]) > 30) {
+        const direction = dy > this.delta[1] ? 'swipeDown' : 'swipeUp';
+        this.emitSwipeEvent(direction, [dx, dy]);
+      }
+
+      this.delta = [0, 0];
+    }
+
+    private getCoordinates(event: MouseEvent | TouchEvent): { x: number; y: number } {
+      const unifiedEvent = 'changedTouches' in event ? event.changedTouches[0] : event;
+      return { x: unifiedEvent.clientX, y: unifiedEvent.clientY };
+    }
+
+    private emitSwipeEvent(eventName: string, detail: [number, number], target?: HTMLElement): void {
+      const event = new CustomEvent(eventName, {
+        detail: { x: detail[0], y: detail[1], origin: target },
+      });
+      this.element.dispatchEvent(event);
+    }
+  }
+/*******************************************
+ * Carousel Class
+ *******************************************/
+interface CarouselOptions {
+  element: HTMLElement;
+  autoplay?: boolean;
+  autoplayInterval?: number;
+  autoplayOnHover?: boolean;
+  autoplayOnFocus?: boolean;
+  loop?: boolean;
+  nav?: boolean;
+  navigationClass?: string;
+  navigationItemClass?: string;
+  drag?: boolean;
+  justifyContent?: boolean;
+  alignControls?: string;
+  overflowItems?: boolean;
+  ariaLive?: boolean;
+}
+
+class Carousel {
+  private options: CarouselOptions;
+  private element: HTMLElement;
+  private listWrapper: HTMLElement;
+  private list: HTMLElement;
+  private items: HTMLCollectionOf<HTMLElement>;
+  private controls: HTMLCollectionOf<HTMLElement>;
+  private selectedItem = 0;
+  private autoplayId: number | null = null;
+  private autoplayPaused = false;
+
+  constructor(options: CarouselOptions) {
+    this.options = {
+      autoplay: false,
+      autoplayInterval: 5000,
+      loop: true,
+      nav: false,
+      ...options,
+    };
+    this.element = this.options.element;
+    this.listWrapper = this.element.querySelector('.carousel__wrapper')!;
+    this.list = this.element.querySelector('.carousel__list')!;
+    this.items = this.element.getElementsByClassName('carousel__item') as HTMLCollectionOf<HTMLElement>;
+    this.controls = this.element.getElementsByClassName('js-carousel__control') as HTMLCollectionOf<HTMLElement>;
+
+    this.init();
+  }
+
+  private init(): void {
+    this.initAutoplay();
+    this.initSwipe();
+    this.initControls();
+    this.initKeyboardNavigation();
+    this.element.classList.add('carousel--loaded');
+  }
+
+  private initAutoplay(): void {
+    if (!this.options.autoplay) return;
+
+    this.startAutoplay();
+    if (!this.options.autoplayOnHover) {
+      this.element.addEventListener('mouseenter', this.pauseAutoplay.bind(this));
+      this.element.addEventListener('mouseleave', this.startAutoplay.bind(this));
+    }
+    if (!this.options.autoplayOnFocus) {
+      this.element.addEventListener('focusin', this.pauseAutoplay.bind(this));
+      this.element.addEventListener('focusout', this.startAutoplay.bind(this));
+    }
+  }
+
+  private startAutoplay(): void {
+    if (this.autoplayPaused || this.autoplayId) return;
+
+    this.autoplayId = window.setInterval(() => {
+      this.showNext();
+    }, this.options.autoplayInterval);
+  }
+
+  private pauseAutoplay(): void {
+    if (this.autoplayId) {
+      window.clearInterval(this.autoplayId);
+      this.autoplayId = null;
+    }
+  }
+
+  private initSwipe(): void {
+    if (!this.options.drag) return;
+
+    new SwipeContent(this.element);
+    this.element.addEventListener('dragStart', this.handleDragStart.bind(this));
+    this.element.addEventListener('dragging', this.handleDragging.bind(this));
+    this.element.addEventListener('dragEnd', this.handleDragEnd.bind(this));
+  }
+
+  private handleDragStart(event: CustomEvent): void {
+    this.pauseAutoplay();
+  }
+
+  private handleDragging(event: CustomEvent): void {
+    // Implement drag handling logic
+  }
+
+  private handleDragEnd(event: CustomEvent): void {
+    this.startAutoplay();
+  }
+
+  private initControls(): void {
+    Array.from(this.controls).forEach((control, index) => {
+      control.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (index === 0) this.showPrev();
+        if (index === 1) this.showNext();
+      });
+    });
+  }
+
+  private initKeyboardNavigation(): void {
+    this.element.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') this.showNext();
+      if (event.key === 'ArrowLeft') this.showPrev();
+    });
+  }
+
+  public showNext(): void {
+    if (this.items.length === 0) return;
+
+    this.selectedItem++;
+
+    if (this.options.loop) {
+      if (this.selectedItem >= this.items.length) {
+        this.selectedItem = 0;
+      }
+    } else {
+      if (this.selectedItem >= this.items.length) {
+        this.selectedItem = this.items.length - 1;
+        this.disableControl(1);
+        return;
+      }
+      this.enableControl(0);
+    }
+
+    this.updateCarouselPosition();
+  }
+
+  public showPrev(): void {
+    if (this.items.length === 0) return;
+
+    this.selectedItem--;
+
+    if (this.options.loop) {
+      if (this.selectedItem < 0) {
+        this.selectedItem = this.items.length - 1;
+      }
+    } else {
+      if (this.selectedItem < 0) {
+        this.selectedItem = 0;
+        this.disableControl(0);
+        return;
+      }
+      this.enableControl(1);
+    }
+
+    this.updateCarouselPosition();
+  }
+
+  private updateCarouselPosition(): void {
+    const itemWidth = parseFloat(getComputedStyle(this.element).getPropertyValue('--carousel-item-auto-size'));
+    const translateX = -this.selectedItem * (itemWidth + parseFloat(getComputedStyle(this.element).getPropertyValue('--carousel-grid-gap')));
+    this.list.style.transform = `translateX(${translateX}px)`;
+    this.list.classList.add('carousel__list--animating');
+
+    // Remove the transition class after the animation is complete
+    this.list.addEventListener('transitionend', () => {
+      this.list.classList.remove('carousel__list--animating');
+    }, { once: true });
+  }
+
+  private disableControl(index: number): void {
+    if (this.controls[index]) {
+      this.controls[index].setAttribute('disabled', 'true');
+    }
+  }
+
+  private enableControl(index: number): void {
+    if (this.controls[index]) {
+      this.controls[index].removeAttribute('disabled');
+    }
+  }
+}
+
+/*******************************************
+ * Initialize Carousels
+ *******************************************/
+document.querySelectorAll('.js-carousel').forEach((element) => {
+  new Carousel({ element: element as HTMLElement, drag: true, autoplay: true });
+});
+
+</script>
