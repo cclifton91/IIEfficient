@@ -1,18 +1,4 @@
 ---
-import Layout from "../layouts/Base.astro";
-import Nav from "../components/Navigation.astro";
-import Footer from "../components/Footer.astro"; 
-import Intro from "../components/Intro.astro";
-import Projects from "../components/Projects.astro";
-import InstaFeed from "../components/InstaFeed.astro";
-
-import cookies from '../assets/Cookieslogo.png';
-import hawks from '../assets/HawksLogo.png';
-import ub from '../assets/UBlogo.png';
-import trival from '../assets/TriValLogo.png';
-import iu from '../assets/IUlogo.png';
-import cs from '../assets/Clutchsportsmedia.png';
-
 const logos = [
   { src: cookies, alt: "Cookies Logo" },
   { src: hawks, alt: "Hawks Logo" },
@@ -34,6 +20,22 @@ const navLinks = [
   { href: "#feed", text: "Content" },
   { href: "#projects", text: "Projects" },
 ];
+
+import Layout from "../layouts/Base.astro";
+import Nav from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro"; 
+import Intro from "../components/Intro.astro";
+import Projects from "../components/Projects.astro";
+import InstaFeed from "../components/InstaFeed.astro";
+
+import cookies from '../assets/Cookieslogo.png';
+import hawks from '../assets/HawksLogo.png';
+import ub from '../assets/UBlogo.png';
+import trival from '../assets/TriValLogo.png';
+import iu from '../assets/IUlogo.png';
+import cs from '../assets/Clutchsportsmedia.png';
+
+
 ---
 
 <Layout {seo}>
