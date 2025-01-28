@@ -2,15 +2,17 @@
 import { getCollection } from 'astro:content';
 const projects = await getCollection('projects');
 import { Image } from 'astro:assets';
+
+const colSpanPattern = ['lg:col-span-8', 'lg:col-span-4', 'lg:col-span-4'];
 ---
 
 <div class="grid grid-cols-12 gap-3 lg:gap-5 mt-8">
   {projects.map((project, index) => {
-    const colSpanClass = index % 2 === 0 ? 'lg:col-span-8' : 'lg:col-span-4';
+    const colSpanClass = colSpanPattern[index % colSpanPattern.length];
     return (
       <a href={`/projects/${project.slug}`} class={`card-v9 rounded col-span-12 ${colSpanClass} relative overflow-hidden`} aria-labelledby={`$project.slug}`}>
         {/* Background Image */}
-        <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 z-0 overlay-container">
           <Image 
             src={project.data.cover}
             alt={project.data.title} 
@@ -30,9 +32,20 @@ import { Image } from 'astro:assets';
       </a>
     );
   })}
+</div>
 
 
 <style>
+    .overlay-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust the opacity as needed */
+    z-index: 1;
+  }
   .card-v9 {
   display: block;
   position: relative;

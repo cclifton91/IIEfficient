@@ -1,0 +1,171 @@
+---
+
+---
+
+<section class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mt-20 border-t-2 border-textColor mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl height:100vh" id="contact">
+
+  <div>
+    <h2 class="text-left text-[6vw] lg:text-[6vw] text-textColor font-bold font-display capitalize leading-none mt-20">CONTACT</h1>
+    <h3 class="text-left text-[2vw] text-primary font-bold font-body">TALK TO US</h3>
+  </div>
+
+  <div class="mt-4">
+    <div class="grid grid-cols-12 gap-8 lg:gap-12">
+      <div class="col-span-12 lg:col-span-6">
+        <dl class="details-list details-list--rows">
+          <div class="details-list__item py-5 lg:py-8">
+            <dt class="font-bold font-display text-textColor mb-1.5 lg:mb-2">Office</dt>
+            <dd class="leading-snug font-body text-gray-400">
+              86  Whitby Road <br>IP20 6JA <br>London, UK
+            </dd>
+          </div>
+        
+          <div class="details-list__item py-5 lg:py-8">
+            <dt class="font-bold mb-1.5 lg:mb-2 font-display text-textColor">Email</dt>
+            <dd>
+              <a href="mailto:webmaster@example.com" class="underline font-body text-secondary">hello@myemail.com</a>
+            </dd>
+          </div>
+        
+          <div class="details-list__item py-5 lg:py-8">
+            <dt class="font-bold mb-1.5 lg:mb-2 font-display text-textColor">Phone</dt>
+            <dd class="leading-snug">
+              <p><a href="tel:+44 7656 6455" class="underline text-secondary">+44 7656 6455</a></p>
+              <p class="text-gray-500">Mon - Fri, 9AM - 5PM</p>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="col-span-12 lg:col-span-6">
+        <form>
+          <div class="mb-3 lg:mb-5">
+            <label class="inline-block text-sm mb-1.5 lg:mb-2 font-body text-textColor" for="contactName">Name</label>
+            <input class="appearance-none bg-background border-2 border-textColor py-2 px-3 rounded-md text-[1em] leading-tight transition duration-200 outline-none placeholder:opacity-100 placeholder:text-gray-400 focus-within:border-primary w-full" type="text" name="contactName" id="contactName" required>
+          </div>
+      
+          <div class="mb-3 lg:mb-5">
+            <label class="inline-block text-sm mb-1.5 lg:mb-2 font-body text-textColor" for="contactEmail">Email</label>
+            <input class="appearance-none bg-background border-2 border-textColor py-2 px-3 rounded-md text-[1em] leading-tight transition duration-200 outline-none placeholder:opacity-100 placeholder:text-gray-400 focus-within:border-primary w-full" type="email" name="contactEmail" id="contactEmail">
+          </div>
+      
+          <div class="mb-3 lg:mb-5">
+            <label class="inline-block text-sm mb-1.5 lg:mb-2 font-body text-textColor" for="contactMessage">Message</label>
+            <textarea class="appearance-none bg-background border-2 border-textColor py-2 px-3 rounded-md text-[1em] leading-tight transition duration-200 outline-none placeholder:opacity-100 placeholder:text-gray-400 focus-within:border-primary w-full" rows="9" name="contactMessage" id="contactMessage"></textarea>
+          </div>
+        
+          <div class="text-right">
+            <button class="bg-primary text-white shadow-md text-[1em] px-4 py-2 rounded-md relative inline-flex justify-center items-center whitespace-nowrap cursor-pointer no-underline leading-tight transition-all duration-200 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    --details-list-border-width: 1px;
+    --details-list-border-opacity: 0.15;
+  }
+
+  .details-list--rows .details-list__item {
+    border-bottom: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+  }
+  .details-list--rows .details-list__item:last-child {
+    border-bottom: none;
+  }
+
+  .details-list--cols .details-list__item {
+    border-right: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+  }
+  .details-list--cols .details-list__item:last-child {
+    border-right: none;
+  }
+
+  @media (min-width: 32rem) {
+    .details-list--rows\@xs .details-list__item {
+      border-right: 0;
+      border-bottom: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+    }
+    .details-list--rows\@xs .details-list__item:last-child {
+      border-bottom: none;
+    }
+
+    .details-list--cols\@xs .details-list__item {
+      border-bottom: 0;
+      border-right: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+    }
+    .details-list--cols\@xs .details-list__item:last-child {
+      border-right: none;
+    }
+  }
+  @media (min-width: 48rem) {
+    .details-list--rows\@sm .details-list__item {
+      border-right: 0;
+      border-bottom: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+    }
+    .details-list--rows\@sm .details-list__item:last-child {
+      border-bottom: none;
+    }
+
+    .details-list--cols\@sm .details-list__item {
+      border-bottom: 0;
+      border-right: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+    }
+    .details-list--cols\@sm .details-list__item:last-child {
+      border-right: none;
+    }
+  }
+  @media (min-width: 64rem) {
+    .details-list--rows\@md .details-list__item {
+      border-right: 0;
+      border-bottom: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+    }
+    .details-list--rows\@md .details-list__item:last-child {
+      border-bottom: none;
+    }
+
+    .details-list--cols\@md .details-list__item {
+      border-bottom: 0;
+      border-right: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+    }
+    .details-list--cols\@md .details-list__item:last-child {
+      border-right: none;
+    }
+  }
+  @media (min-width: 80rem) {
+    .details-list--rows\@lg .details-list__item {
+      border-right: 0;
+      border-bottom: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+    }
+    .details-list--rows\@lg .details-list__item:last-child {
+      border-bottom: none;
+    }
+
+    .details-list--cols\@lg .details-list__item {
+      border-bottom: 0;
+      border-right: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+    }
+    .details-list--cols\@lg .details-list__item:last-child {
+      border-right: none;
+    }
+  }
+  @media (min-width: 90rem) {
+    .details-list--rows\@xl .details-list__item {
+      border-right: 0;
+      border-bottom: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+    }
+    .details-list--rows\@xl .details-list__item:last-child {
+      border-bottom: none;
+    }
+
+    .details-list--cols\@xl .details-list__item {
+      border-bottom: 0;
+      border-right: var(--details-list-border-width) solid hsl(221 39% 11% / var(--details-list-border-opacity));
+    }
+    .details-list--cols\@xl .details-list__item:last-child {
+      border-right: none;
+    }
+  }
+</style>
