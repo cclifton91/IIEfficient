@@ -36,4 +36,16 @@ content:
       - name: "body"
         label: "Content"
         type: "rich-text" 
+  - name: "settings"
+    label: "Site Settings"
+    type: "file"
+    path: "src/data/settings.json"
+    fields:
+      - { name: "title", label: "Website Title", type: "string", required: true }
+      - { name: "description", label: "Website Description", type: "text", required: true }
+      - { name: "url", label: "Website URL", type: "string", required: true }
+      - { name: "name", label: "Business Name", type: "string", required: true }
+      - { name: "instagramURL", label: "Instagram URL", type: "string" }
+      - { name: "tikTokURL", label: "TikTok URL", type: "string" }
+
   

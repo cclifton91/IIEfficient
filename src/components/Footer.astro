@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import settings from '../data/settings.js';
+import settings from '../data/settings.json';
 
 ---
 
@@ -24,10 +24,6 @@ import settings from '../data/settings.js';
     <div class="footer-v3__socials">
       <a href={settings.instagramURL}>
           <Icon name="instagram24" class="icon inline-block text-inherit fill-current leading-none shrink-0" />
-      </a>
-
-      <a href={settings.facebookURL}>
-        <Icon name="facebook24" class="icon inline-block text-inherit fill-current leading-none shrink-0" />
       </a>
 
       <a href={settings.tikTokURL}>
