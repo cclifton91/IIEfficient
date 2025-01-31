@@ -1,5 +1,5 @@
 media:
-  input: src/assets
+  input: /public/assets
   output: /assets
 
 content:
@@ -50,7 +50,7 @@ content:
       - { name: "address", label: "Address", type: "string", required: true }
       - { name: "instagramURL", label: "Instagram URL", type: "string" }
       - { name: "tikTokURL", label: "TikTok URL", type: "string" }
-      - { name: "introVideo", label: "Background Video", type: "image", options: { path: "./assets", extensions: ["mp4", "mov", "webm"] } }
+      - { name: "introVideo", label: "Background Video", type: "image", options: { path: "/assets", extensions: ["mp4", "mov", "webm"] } }
       - { name: "logos", label: "Logos", type: "image", list: true, options: { path: "/assets" }}
       - { name: "aboutText", label: "About Your Business", type: "rich-text" }
       - { name: "contentFeed", label: "Content Reel Videos", type: "image", list: true, options: { path: "/assets", extensions: ["mp4", "mov", "webm"] } }
