@@ -5,5 +5,14 @@
   "name": "II Efficient Media",
   "instagramURL": "https://www.instagram.com/kenny2efficient/",
   "tikTokURL": "https://www.tiktok.com/@iiefficient",
-  "aboutText": "II Efficient Media - where storytelling meets creativity. Based in Illinois, we are a vibrant creative agency specializing in crafting high-quality, visually stunning content for athletes, colleges, and businesses across the state.\n\nWith over three years of professional experience, our team is dedicated to capturing the heart of athletics and business storytelling. From showcasing the determination of a game to highlighting the passion of an athlete or elevating a brand's message, every project is an opportunity to create something extraordinary."
+  "introVideo": "/assets/IIEfficientIntro.mp4",
+  "aboutText": "II Efficient Media – where storytelling meets creativity. Bringing visions to life.",
+  "logos": [
+
+  ],
+  "contentFeed": [
+    "/assets/InstaPost1.mp4"
+  ]
 }
+
+

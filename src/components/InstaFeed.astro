@@ -13,31 +13,13 @@ const { contentFeed } = Astro.props;
   
       <div class="carousel__wrapper relative">
         <ol class="carousel__list">
-          <li class="carousel__item">
-            <a href="https://www.instagram.com/kenny2efficient/">
-            <video src="src/assets/InstaPost1.mp4" autoplay loop muted playsinline></video>
-            </a>
-          </li>
-  
-          <li class="carousel__item bg-secondary">
-            <video src="src/assets/InstaPost2.mp4" autoplay loop muted playsinline></video>
-          </li>
-  
-          <li class="carousel__item bg-secondary">
-            <video src="src/assets/InstaPost3.mp4" autoplay loop muted playsinline></video>
-          </li>
-  
-          <li class="carousel__item bg-secondary">
-            <video src="src/assets/InstaPost4.mp4" autoplay loop muted playsinline></video>
-          </li>
-  
-          <li class="carousel__item bg-secondary">
-            <video src="src/assets/InstaPost5.mp4" autoplay loop muted playsinline></video>
-          </li>
-  
-          <li class="carousel__item bg-secondary">
-            <video src="src/assets/InstaPost6.mp4" autoplay loop muted playsinline></video>
-          </li>
+          {contentFeed.map((item) => (
+            <li class="carousel__item">
+              <a href="https://www.instagram.com/kenny2efficient/">
+                <video src={item.src} autoplay loop muted playsinline></video>
+              </a>
+            </li>
+          ))}
         </ol>
   
         <nav class="no-js:is-hidden">
