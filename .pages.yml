@@ -47,5 +47,10 @@ content:
       - { name: "name", label: "Business Name", type: "string", required: true }
       - { name: "instagramURL", label: "Instagram URL", type: "string" }
       - { name: "tikTokURL", label: "TikTok URL", type: "string" }
+      - { name: "introVideo", label: "Background Video", type: "file", options: { path: "/assets", extensions: ["mp4", "mov", "webm"] } }
+      - { name: "logos", label: "Logos", type: "list", field: { type: "image", options: { path: "/assets" } } }
+      - { name: "aboutText", label: "About Your Business", type: "rich-text" }
+      - { name: "contentFeed", label: "Content Reel", type: "list", field: { type: "file", options: { path: "/assets", extensions: ["mp4", "mov"] } } }
+
 
   

@@ -6,6 +6,7 @@ import Intro from "../components/Intro.astro";
 import Projects from "../components/Projects.astro";
 import InstaFeed from "../components/InstaFeed.astro";
 import Contact from "../components/Contact.astro";
+import settings from "../data/settings.json";
 
 import cookies from '../assets/Cookieslogo.png';
 import hawks from '../assets/HawksLogo.png';
@@ -15,16 +16,6 @@ import iu from '../assets/IUlogo.png';
 import cs from '../assets/Clutchsportsmedia.png';
 
 
-
-const logos = [
-  { src: cookies, alt: "Cookies Logo" },
-  { src: hawks, alt: "Hawks Logo" },
-  { src: ub, alt: "UB Logo" },
-  { src: trival, alt: "TriVal Logo" },
-  { src: iu, alt: "IU Logo" },
-  { src: cs, alt: "Clutch Sports Media Logo" },
-
-];
 
 //Props
 const seo = {
@@ -43,16 +34,12 @@ const navLinks = [
 <Layout {seo}>
   <Nav navLinks={navLinks} logo="TriangleLogo" slot="header"/>
   <Intro
-    videoSrc="/assets/IIEfficientIntro.mp4"
-    mainTitle="II EFFICIENT MEDIA"
-    subTitle="CAPTURING COMPELLING STORIES"
-    aboutTitle="WE HELP GROW BUSINESSES"
-    aboutText1="II Efficient Media - where storytelling meets creativity. Based in Illinois, we are a vibrant creative agency specializing in crafting high-quality, visually stunning content for athletes, colleges, and businesses across the state."
-    aboutText2="With over three years of professional experience, our team is dedicated to capturing the heart of athletics and business storytelling. From showcasing the determination of a game to highlighting the passion of an athlete or elevating a brand's message, every project is an opportunity to create something extraordinary."
-    logos={logos}
+    videoSrc= {settings.videoSrc}
+    logos = {settings.logos}
+    aboutText = {settings.aboutText}
   />
   <Projects />
-  <InstaFeed feedVideo="/assets/InstaPost1.mp4"/>
+  <InstaFeed contentFeed = {settings.contentFeed} />
   <Contact />
   <Footer slot="footer"/>
 </Layout>
