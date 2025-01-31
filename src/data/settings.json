@@ -1,11 +1,14 @@
 {
+  "name": "II Efficient Media",
   "title": "II Efficient Media",
   "description": "Specialized Digital Content Creation for Social Media",
   "url": "https://IIEfficientMedia.netlify.app",
-  "name": "II Efficient Media",
+  "email": "info@iiefficientmedia.com",
+  "phone": "123-456-7890",
+  "address": "1234 Main St, Chicago, IL 60601",
   "instagramURL": "https://www.instagram.com/kenny2efficient/",
   "tikTokURL": "https://www.tiktok.com/@iiefficient",
-  "introVideo": "/assets/IIEfficientIntro.mp4",
+  "introVideo": "/assets/ComingSoon.png",
   "aboutText": "II Efficient Media - where storytelling meets creativity. Based in Illinois, we are a vibrant creative agency specializing in crafting high-quality, visually stunning content for athletes, colleges, and businesses across the state.\n\nWith over three years of professional experience, our team is dedicated to capturing the heart of athletics and business storytelling. From showcasing the determination of a game to highlighting the passion of an athlete or elevating a brand's message, every project is an opportunity to create something extraordinary.",
   "contentFeed": [
     "/assets/InstaPost1.mp4",
@@ -14,8 +17,5 @@
     "/assets/InstaPost4.mp4",
     "/assets/InstaPost5.mp4",
     "/assets/InstaPost6.mp4"
-  ],
-  "address": "1234 Main St, Chicago, IL 60601",
-  "phone": "123-456-7890",
-  "email": "info@iiefficientmedia.com"
+  ]
 }
