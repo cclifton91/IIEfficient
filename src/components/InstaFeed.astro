@@ -1,6 +1,7 @@
 ---
 const { contentFeed } = Astro.props;
-
+import settings from "../data/settings.json";
+console.log(settings.contentFeed); // Debugging Step
 ---
 
 <section class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mt-20 mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl border-t-2 border-textColor height-100vh" id="feed">
@@ -11,13 +12,13 @@ const { contentFeed } = Astro.props;
   <div class="overflow-hidden">
     <div class="carousel carousel-v3 flex flex-col w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-5xl js-carousel mt-16" data-drag="on" data-loop="off" data-overflow-items="on">
       <p class="sr-only">Carousel items</p>
-
+      
       <div class="carousel__wrapper relative">
         <ol class="carousel__list">
           {contentFeed.map((item) => (
             <li class="carousel__item">
               <a href="https://www.instagram.com/kenny2efficient/">
-                <video src={item.src} autoplay loop muted playsinline></video>
+                <video src={item.replace(".mp4", ".webm")} autoplay loop muted playsinline></video>
               </a>
             </li>
           ))}
