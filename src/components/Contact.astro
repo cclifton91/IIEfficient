@@ -1,5 +1,9 @@
 ---
-
+const {
+  address,
+  email,
+  phone,
+} = Astro.props
 ---
 
 <section class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mt-20 border-t-2 border-textColor mx-auto max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-7xl height:100vh" id="contact">
@@ -16,21 +20,21 @@
           <div class="details-list__item py-5 lg:py-8">
             <dt class="font-bold font-display text-textColor mb-1.5 lg:mb-2">Office</dt>
             <dd class="leading-snug font-body text-gray-400">
-              86  Whitby Road <br>IP20 6JA <br>London, UK
+              {address}
             </dd>
           </div>
         
           <div class="details-list__item py-5 lg:py-8">
             <dt class="font-bold mb-1.5 lg:mb-2 font-display text-textColor">Email</dt>
             <dd>
-              <a href="mailto:webmaster@example.com" class="underline font-body text-secondary">hello@myemail.com</a>
+              <a href="mailto:webmaster@example.com" class="underline font-body text-secondary">{email}</a>
             </dd>
           </div>
         
           <div class="details-list__item py-5 lg:py-8">
             <dt class="font-bold mb-1.5 lg:mb-2 font-display text-textColor">Phone</dt>
             <dd class="leading-snug">
-              <p><a href="tel:+44 7656 6455" class="underline text-secondary">+44 7656 6455</a></p>
+              <p><a href="tel:+44 7656 6455" class="underline text-secondary">{phone}</a></p>
               <p class="text-gray-500">Mon - Fri, 9AM - 5PM</p>
             </dd>
           </div>

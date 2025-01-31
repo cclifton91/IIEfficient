@@ -41,10 +41,13 @@ content:
     type: "file"
     path: "src/data/settings.json"
     fields:
+      - { name: "name", label: "Business Name", type: "string", required: true }
       - { name: "title", label: "Website Title", type: "string", required: true }
       - { name: "description", label: "Website Description", type: "text", required: true }
       - { name: "url", label: "Website URL", type: "string", required: true }
-      - { name: "name", label: "Business Name", type: "string", required: true }
+      - { name: "email", label: "Email Address", type: "string", required: true }
+      - { name: "phone", label: "Phone Number", type: "string", required: true }
+      - { name: "address", label: "Address", type: "string", required: true }
       - { name: "instagramURL", label: "Instagram URL", type: "string" }
       - { name: "tikTokURL", label: "TikTok URL", type: "string" }
       - { name: "introVideo", label: "Background Video", type: "image", options: { path: "src/assets", extensions: ["mp4", "mov", "webm"] } }

@@ -14,5 +14,8 @@
     "/assets/InstaPost4.mp4",
     "/assets/InstaPost5.mp4",
     "/assets/InstaPost6.mp4"
-  ]
+  ],
+  "address": "1234 Main St, Chicago, IL 60601",
+  "phone": "123-456-7890",
+  "email": "info@iiefficientmedia.com"
 }
