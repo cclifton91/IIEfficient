@@ -1,6 +1,6 @@
 media:
-  input: src/assets
-  output: /assets
+  input: src/media
+  output: /media
 content:
   - name: "settings"
     label: "Basic Settings"
@@ -26,7 +26,7 @@ content:
       - { name: "instagram", label: "Instagram", type: "string",}
       - { name: "linkedin", label: "LinkedIn", type: "string",}
       - { name: "youtube", label: "Youtube", type: "string",}  
-  - name: "Home Page"
+  - name: "index"
     label: "Home Page Settings" 
     path: "src/pages/index.astro"
     type: "file"
@@ -35,5 +35,7 @@ content:
     - { name: "subheading", label: "Hero Subheading", type: "text",}
     - { name: "heroImg", label: "Hero Image", type: "image", options: { path: "src/media"},}
     - { name: "aboutText", label: "About Description", type: "text",}
+    - { name: "logoCloud", label: "Logo Cloud", type: "image", options: { path: "src/media/logo_cloud"},}
+    - { name: "videoCarousel", label: "Video Carousel", type: "image", options: { path: "src/media/video_carousel", multiple: "true", max: "6"},}
 
     
