@@ -1,0 +1,41 @@
+---
+import settings from "../data/settings.json"
+import { SEO } from "astro-seo"
+//Props
+const { title = settings.title, description = settings.description, url = settings.url, image = settings.ogImage } = Astro.props
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+<!-- SEO Component -->
+<SEO
+	title={title}
+	description={description}
+	canonical={url}
+	openGraph={{
+		basic: {
+			title: title,
+			type: "website",
+			image: image,
+			url: url,
+		},
+		optional: {
+			description: description,
+		},
+	}}
+/>
+<!--Pre Loaded Images -->
+
+<!--Google Fonts-->
+
+<!-- Scripts -->
+
+<!-- settingsmap -->
+<link rel="settingsmap" href="/settingsmap.xml" />
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
