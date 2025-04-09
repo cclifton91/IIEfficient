@@ -1,5 +1,7 @@
 ---
+import settings from "../data/home.json"
 
+const { logos = settings.logoCloud, operatingTime = settings.bizInfo } = Astro.props
 ---
 
 <section class="py-20 px-4 md:px-8">
@@ -11,12 +13,24 @@
 			<!-- Left Info -->
 			<!-- Right Subheading -->
 			<div class="flex align-top sm:justify-start justify-center">
-				<h2 class="font-bold text-red-400 uppercase tracking-wide self-end sm:text-6xl sm:text-left">High Quality Content</h2>
+				<h2 class="font-bold text-red-400 uppercase tracking-wide self-end text-4xl sm:text-6xl sm:text-left">High Quality Content</h2>
 			</div>
 			<div class="font-body text-gray-400 space-y-2 sm:text-base text-xl flex flex-col align-middle justify-end sm:text-left">
 				<p>Videotography</p>
-				<p>Fri–Sat: 11AM–7PM | Sun: 11AM–5PM</p>
+				<p>{operatingTime}</p>
 			</div>
 		</div>
+	</div>
+	<!--Logo Cloud-->
+	<div class="container mx-auto hidden sm:flex flex-wrap mt-24 justify-start items-start">
+		{
+			logos.map((logo) => (
+				<div class="w-full sm:w-1/6 p-3">
+					<div class="flex items-center justify-center sm:justify-start">
+						<img class="w-28 h-auto filter grayscale" src={logo.src} alt={logo.alt} />
+					</div>
+				</div>
+			))
+		}
 	</div>
 </section>

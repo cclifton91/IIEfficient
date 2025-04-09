@@ -28,14 +28,13 @@ content:
       - { name: "youtube", label: "Youtube", type: "string",}  
   - name: "index"
     label: "Home Page Settings" 
-    path: "src/pages/index.astro"
+    path: "src/data/home.json"
     type: "file"
     fields:
-    - { name: "heading", label: "Hero Heading", type: "text",}
-    - { name: "subheading", label: "Hero Subheading", type: "text",}
-    - { name: "heroImg", label: "Hero Image", type: "image", options: { path: "src/media"},}
-    - { name: "aboutText", label: "About Description", type: "text",}
+    - {name: "bizInfo", label: "Business Operation", type: "string",}
+    - { name: "heroVideo", label: "Hero Video", type: "video", options: { path: "src/media"},}
+    - { name: "aboutText", label: "About Description", type: "rich-text",}
     - { name: "logoCloud", label: "Logo Cloud", type: "image", options: { path: "src/media/logo_cloud"},}
-    - { name: "videoCarousel", label: "Video Carousel", type: "image", options: { path: "src/media/video_carousel", multiple: "true", max: "6"},}
+    - { name: "videoCarousel", label: "Video Carousel", type: "image", options: { path: "src/media/video_carousel", multiple: "true", max: "6", extensions: [webm, mp4]},}
 
     

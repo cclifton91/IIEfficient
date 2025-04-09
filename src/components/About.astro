@@ -1,5 +1,7 @@
 ---
+import settings from "../data/home.json"
 
+const { heroVideo = settings.heroVideo, story = settings.aboutText } = Astro.props
 ---
 
 <div class="immerse-section-tr js-immerse-section-tr">
@@ -7,70 +9,52 @@
 	<div class="immerse-section-tr__media js-immerse-section-tr__media">
 		<!-- Mobile Video -->
 		<figure class="immerse-section-tr__figure immerse-section-tr__figure--3-4 md:hidden js-immerse-section-tr__figure">
-			<video src="/media/IIEfficientIntro.mp4" autoplay loop muted playsinline></video>
+			<video src={heroVideo} autoplay loop muted playsinline></video>
 		</figure>
 
 		<!-- Desktop Video -->
 		<figure class="immerse-section-tr__figure immerse-section-tr__figure--16-9 hidden md:block js-immerse-section-tr__figure">
-			<video src="/media/IIEfficientIntro.mp4" autoplay loop muted playsinline></video>
+			<video src={heroVideo} autoplay loop muted playsinline></video>
 		</figure>
 	</div>
 
 	<!-- ABOUT CONTENT (wrapped in max-width container) -->
 	<section class="immerse-section-tr__content py-12 bg-slate-900 lg:py-20 mt-8 lg:mt-12 js-immerse-section-tr__content">
 		<div class="container px-4 mx-auto py-20">
+			<!--About Content -->
 			<div class="flex flex-wrap -m-8">
 				<div class="w-full md:w-1/2 p-8">
 					<div class="md:max-w-md">
-						<h2 class="font-headings font-bold text-red-400 mb-8 sm:text-6xl uppercase">About The Biz</h2>
-						<p class="font-body text-gray-500 font-medium">
-							My name is Kenneth Clifton, and I am the founder and lead videographer of this creative hub based in Illinois. With over three years of professional experience, I’ve dedicated my career
-							to capturing compelling stories for athletes, colleges, and businesses across the state.
-							<br />
-							I specialize in creating high-quality content that speaks to the heart of athletics and business storytelling. Whether it’s showcasing the grit of a game, highlighting the passion of a player,
-							or elevating a brand’s message, my goal is to bring your vision to life with creativity and precision.
-							<br />
-							I had the privilege of working with multiple colleges and professional athletes, and I take pride in making every second of footage count. Every project is an opportunity to craft something
-							extraordinary!
+						<h2 class="font-headings font-bold text-red-400 mb-8 text-6xl uppercase">Our Story</h2>
+						<p class="font-body text-gray-400 font-medium">
+							{story}
 						</p>
 					</div>
 				</div>
 				<div class="w-full md:w-1/2 p-8">
 					<div class="flex flex-wrap -m-6">
 						<div class="w-full md:w-1/2 p-6">
-							<div class="max-w-xs mx-auto">
-								<h6 class="font-headings mb-3 text-xl font-bold text-white">State-of-the-Art Equipment</h6>
-								<p class="text-sm text-gray-500 font-medium">Harness cutting-edge technology to create professional-grade content.</p>
+							<div class="max-w-xs text-left md:mx-auto">
+								<h6 class="font-headings mb-3 text-xl font-bold text-red-400">State-of-the-Art Equipment</h6>
+								<p class="text-sm text-gray-400 font-medium">Harness cutting-edge technology to create professional-grade content.</p>
 							</div>
 						</div>
 						<div class="w-full md:w-1/2 p-6">
-							<div class="max-w-xs mx-auto">
-								<h6 class="font-headings mb-3 text-xl font-bold text-white">Expert Workshops</h6>
-								<p class="text-sm text-gray-500 font-medium">Learn from industry professionals and elevate your skills.</p>
+							<div class="max-w-xs text-left md:mx-auto">
+								<h6 class="font-headings mb-3 text-xl font-bold text-red-400">Tailored Services</h6>
+								<p class="text-sm text-gray-400 font-medium">From pre-production to post-production, we cater to your unique needs.</p>
 							</div>
 						</div>
 						<div class="w-full md:w-1/2 p-6">
-							<div class="max-w-xs mx-auto">
-								<h6 class="font-headings mb-3 text-xl font-bold text-white">Creative Spaces</h6>
-								<p class="text-sm text-gray-500 font-medium">Our studios are designed to inspire creativity and innovation.</p>
+							<div class="max-w-xs text-left md:mx-auto">
+								<h6 class="font-headings mb-3 text-xl font-bold text-red-400">Passionate Team</h6>
+								<p class="text-sm text-gray-400 font-medium">Work with a community of creatives committed to bringing visions to life.</p>
 							</div>
 						</div>
 						<div class="w-full md:w-1/2 p-6">
-							<div class="max-w-xs mx-auto">
-								<h6 class="font-headings mb-3 text-xl font-bold text-white">Tailored Services</h6>
-								<p class="text-sm text-gray-500 font-medium">From pre-production to post-production, we cater to your unique needs.</p>
-							</div>
-						</div>
-						<div class="w-full md:w-1/2 p-6">
-							<div class="max-w-xs mx-auto">
-								<h6 class="font-headings mb-3 text-xl font-bold text-white">Passionate Team</h6>
-								<p class="text-sm text-gray-500 font-medium">Work with a community of creatives committed to bringing visions to life.</p>
-							</div>
-						</div>
-						<div class="w-full md:w-1/2 p-6">
-							<div class="max-w-xs mx-auto">
-								<h6 class="font-headings mb-3 text-xl font-bold text-white">Diverse Portfolio</h6>
-								<p class="text-sm text-gray-500 font-medium">Explore our wide range of successful projects across various genres.</p>
+							<div class="max-w-xs text-left md:mx-auto">
+								<h6 class="font-headings mb-3 text-xl font-bold text-red-400">Diverse Portfolio</h6>
+								<p class="text-sm text-gray-400 font-medium">Explore our wide range of successful projects across various genres.</p>
 							</div>
 						</div>
 					</div>
@@ -300,7 +284,7 @@
 			if (!this.visibleFigure) return
 
 			this.mediaInitHeight = this.visibleFigure.offsetHeight
-			this.scrollDelta = Math.max(Math.min((window.innerHeight - this.visibleFigure.offsetHeight) / 2, window.innerHeight), 200)
+			this.scrollDelta = 600
 
 			this.media[0].style.height = `${window.innerHeight}px`
 			this.media[0].style.paddingTop = `${(window.innerHeight - this.visibleFigure.offsetHeight) / 2}px`
@@ -342,7 +326,7 @@
 				this.updateOpacity(0)
 			} else {
 				this.updateScale(this.mediaScale)
-				this.updateOpacity((1.8 * (offsetTop - this.scrollDelta - top)) / window.innerHeight)
+				this.updateOpacity((1.2 * (offsetTop - this.scrollDelta - top)) / window.innerHeight)
 			}
 
 			this.scrolling = false
@@ -371,9 +355,12 @@
 			}
 		}
 
-		private handleScroll(): void {
+		/**private handleScroll(): void {
 			if (this.scrolling) return
 			this.scrolling = true
+			window.requestAnimationFrame(() => this.updateScaleAndOpacity())
+		}>**/
+		private handleScroll(): void {
 			window.requestAnimationFrame(() => this.updateScaleAndOpacity())
 		}
 

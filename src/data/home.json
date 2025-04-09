@@ -1,0 +1,32 @@
+{
+  "bizInfo" : "Fri–Sat: 11AM–7PM | Sun: 11AM–5PM",
+  "heroVideo" : "/media/IIEfficientIntro.mp4",
+  "aboutText" : "Welcome to II Efficient Media! My name is Kenneth Clifton, and I am the founder and lead videographer of this creative hub based in Illinois. With over three years of professional experience, I’ve dedicated my career to capturing compelling stories for athletes, colleges, and businesses across the state. I specialize in creating high-quality content that speaks to the heart of athletics and business storytelling. Whether it’s showcasing the grit of a game, highlighting the passion of a player, or elevating a brand’s message, my goal is to bring your vision to life with creativity and precision.I had the privilege of working with multiple colleges and professional athletes, and I take pride in making every second of footage count. Every project is an opportunity to craft something extraordinary!",
+  "logoCloud" : [
+    {
+      "src": "src/media/logo_cloud/logo1.png",
+      "alt": "logo1"
+    },
+    {
+      "src": "src/media/logo_cloud/logo2.png",
+      "alt": "logo2"
+    },
+    {
+      "src": "src/media/logo_cloud/logo3.png",
+      "alt": "logo3"
+    },
+    {
+      "src": "src/media/logo_cloud/logo4.png",
+      "alt": "logo4"
+    },
+    {
+      "src": "src/media/logo_cloud/logo5.png",
+      "alt": "logo5"
+    }
+  ],
+  "videoCarousel" : [
+    "/media/video1.mp4",
+    "/media/video2.mp4",
+    "/media/video3.mp4"
+  ]
+}
