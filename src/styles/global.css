@@ -4,10 +4,6 @@
   :root {
     --font-headings: 'Anton SC', 'sans-serif';
     --font-body: 'Poppins', 'sans-serif';
-    --color-primary: #f43f5e;
-    --color-secondary: #0ea5e9;
-    --color-subtle: #4b5563;
-    --color-dark: #111827;
-    --color-light: #f9fafb;
+
   }
 }

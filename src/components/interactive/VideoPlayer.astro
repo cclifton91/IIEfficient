@@ -1,0 +1,21 @@
+---
+const { src, poster = "", autoplay = true, loop = true, muted = true, controls = false, className = "", lazy = true } = Astro.props
+---
+
+<div x-data="{ show: !{{ lazy }} }" x-intersect.once="show = true" class={`relative overflow-hidden ${className}`}>
+	<template x-if="show">
+		<video
+			class="w-full h-auto"
+			playsinline
+			preload="auto"
+			poster={poster}
+			{...autoplay ? { autoplay: true } : {}}
+			{...loop ? { loop: true } : {}}
+			{...muted ? { muted: true } : {}}
+			{...controls ? { controls: true } : {}}>
+			<source src={`/videos/${src}.webm`} type="video/webm" />
+			<source src={`/videos/${src}.mp4`} type="video/mp4" />
+			Your browser does not support the video tag.
+		</video>
+	</template>
+</div>
