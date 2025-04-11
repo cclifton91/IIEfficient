@@ -1,0 +1,18 @@
+---
+import backgroundImage from "../assets/seeforyourself.png"
+import Carousel from "../components/interactive/Carousel.astro"
+---
+
+<section class="overflow-hidden bg-red-400 flex flex-col justify-center items-center h-screen" id="videoGallery">
+	<div class="container px-4 mx-auto flex justify-center items-center">
+		<div class="w-full hidden md:flex md:w-1/2 p-8">
+			<div class="md:max-w-md">
+				<h2 class="font-headings font-bold text-slate-900 mb-8 text-8xl uppercase">You Look Good On Camera</h2>
+			</div>
+		</div>
+		<div class="w-full md:w-1/2 p-8">
+			<!--Video Gallery Component -->
+			<Carousel />
+		</div>
+	</div>
+</section>

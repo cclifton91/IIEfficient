@@ -24,9 +24,12 @@
       "alt": "logo5"
     }
   ],
-  "videoCarousel" : [
-    "/media/video1.mp4",
-    "/media/video2.mp4",
-    "/media/video3.mp4"
+  "videoCarousel": [
+  { "src": "VideoPost1", "type": "webm" },
+  { "src": "VideoPost2", "type": "webm" },
+  { "src": "VideoPost3", "type": "webm" },
+  { "src": "VideoPost4", "type": "webm" },
+  { "src": "VideoPost5", "type": "webm" },
+  { "src": "VideoPost6", "type": "webm" }
   ]
 }

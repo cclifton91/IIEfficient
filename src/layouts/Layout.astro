@@ -18,6 +18,27 @@ import BaseHead from "../components/BaseHead.astro"
 		<footer>
 			<slot name="footer" />
 		</footer>
+		<script is:inline>
+			function videoCarouselComponent() {
+				return {
+					currentVideo: 0,
+					videos: [],
+					init(el) {
+						try {
+							this.videos = JSON.parse(el.dataset.videos)
+						} catch (err) {
+							console.error("Video Carousel JSON error:", err)
+						}
+					},
+					nextVideo() {
+						this.currentVideo = (this.currentVideo + 1) % this.videos.length
+					},
+					prevVideo() {
+						this.currentVideo = (this.currentVideo - 1 + this.videos.length) % this.videos.length
+					},
+				}
+			}
+		</script>
 	</body>
 </html>
 
