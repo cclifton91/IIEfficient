@@ -21,16 +21,4 @@ const { logos = settings.logoCloud, operatingTime = settings.bizInfo } = Astro.p
 			</div>
 		</div>
 	</div>
-	<!--Logo Cloud-->
-	<div class="container mx-auto hidden sm:flex flex-wrap mt-24 justify-start items-start">
-		{
-			logos.map((logo) => (
-				<div class="w-full sm:w-1/6 p-3">
-					<div class="flex items-center justify-center sm:justify-start">
-						<img class="w-28 h-auto filter grayscale" src={logo.src} alt={logo.alt} />
-					</div>
-				</div>
-			))
-		}
-	</div>
 </section>

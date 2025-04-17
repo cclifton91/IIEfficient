@@ -3,112 +3,141 @@ import settings from "../../data/home.json"
 const { videoCarousel = settings.videoCarousel } = Astro.props
 ---
 
-<div class="relative pt-36 flex justify-center js-carousel w-full max-w-[500px] mx-auto">
-	<!-- iPhone Frame SVG -->
-	<svg class="w-full h-auto" viewBox="0 0 589 1068" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-		<g filter="url(#filter0_ddddd_807_85)">
-			<rect x="80" width="429" height="888" rx="73" fill="#181A22"></rect>
-			<rect x="80.5" y="0.5" width="428" height="887" rx="72.5" stroke="black" stroke-opacity="0.9"></rect>
-		</g>
-		<defs>
-			<filter id="filter0_ddddd_807_85" x="0" y="0" width="589" height="1068" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-				<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-				<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
-				<feOffset dy="3.43489"></feOffset>
-				<feGaussianBlur stdDeviation="1.37396"></feGaussianBlur>
-				<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.02 0"></feColorMatrix>
-				<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
-				<!-- Additional drop shadows omitted for brevity -->
-				<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
-			</filter>
-		</defs>
-	</svg>
+<div class="relative js-carousel w-full h-[calc(100vh-4rem)] max-h-[90vh] overflow-hidden flex items-center">
+	<!-- Video List -->
+	<ul class="carousel__list flex w-full h-full transition-transform js-carousel__list">
+		{
+			videoCarousel.map((item) => (
+				<li class="carousel__item w-full h-full flex-shrink-0">
+					<video autoplay muted loop playsinline class="w-full h-full object-cover" src={`/media/videoGallery/${item.src}.${item.type}`} />
+				</li>
+			))
+		}
+	</ul>
 
-	<!-- Carousel Video Screen -->
-	<div class="absolute top-[22%] left-[18%] w-[64%] h-[76%] rounded-xl overflow-hidden">
-		<ul class="carousel__list flex transition-transform js-carousel__list">
-			{
-				videoCarousel.map((item) => (
-					<li class="carousel__item w-full flex-shrink-0">
-						<video autoplay muted loop playsinline class="w-full h-full object-cover" src={`/media/videoGallery/${item.src}.${item.type}`} />
-					</li>
-				))
-			}
-		</ul>
-	</div>
-
-	<!-- Carousel Navigation -->
-	<button class="carousel__control carousel__control--prev js-carousel__control absolute top-1/2 left-4 transform -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 rounded-full p-2"> ← </button>
-
-	<button class="carousel__control carousel__control--next js-carousel__control absolute top-1/2 right-4 transform -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 rounded-full p-2"> → </button>
+	<!-- Pagination Dots -->
+	<div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10 js-carousel__pagination"></div>
 </div>
 
 <style>
 	.carousel__list {
-		display: flex;
 		will-change: transform;
 	}
-
 	.carousel__item {
-		flex-shrink: 0;
 		width: 100%;
+		height: 100%;
+		flex-shrink: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
-
 	.carousel__list--animating {
 		transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+	.carousel__item video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.carousel__dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 9999px;
+		background-color: rgba(255, 255, 255, 0.3);
+		transition:
+			background-color 0.3s,
+			transform 0.3s;
+		transform: scale(1);
+	}
+	.carousel__dot--active {
+		background-color: white;
+		transform: scale(1.25);
 	}
 </style>
 
 <script>
 	document.addEventListener("DOMContentLoaded", () => {
 		const carouselEl = document.querySelector(".js-carousel") as HTMLElement | null
-		if (!carouselEl) return
+		const list = carouselEl?.querySelector(".js-carousel__list") as HTMLElement | null
+		const items = list?.children ?? []
+		const pagination = carouselEl?.querySelector(".js-carousel__pagination") as HTMLElement | null
 
-		const list = carouselEl.querySelector(".js-carousel__list") as HTMLElement | null
-		const items = list?.children
-		const controls = carouselEl.querySelectorAll(".js-carousel__control") as NodeListOf<HTMLButtonElement>
-
-		if (!list || !items || controls.length < 2) return
+		if (!carouselEl || !list || items.length === 0 || !pagination) return
 
 		let index = 0
+		let autoplayInterval: ReturnType<typeof setInterval> | null = null
+
+		// Pagination Dots
+		const dots: HTMLButtonElement[] = Array.from(items).map((_, i) => {
+			const dot = document.createElement("button")
+			dot.className = "carousel__dot"
+			dot.addEventListener("click", () => {
+				index = i
+				update()
+				resetAutoplay()
+			})
+			pagination.appendChild(dot)
+			return dot
+		})
+
+		const updateDots = () => {
+			dots.forEach((dot, i) => {
+				dot.classList.toggle("carousel__dot--active", i === index)
+			})
+		}
 
 		const update = () => {
 			const offset = -index * list.clientWidth
-			list.style.transform = `translateX(${offset}px)`
+			;(list as HTMLElement).style.transform = `translateX(${offset}px)`
 			list.classList.add("carousel__list--animating")
 
-			list.addEventListener(
-				"transitionend",
-				() => {
-					list.classList.remove("carousel__list--animating")
-				},
-				{ once: true }
-			)
+			list.addEventListener("transitionend", () => list.classList.remove("carousel__list--animating"), { once: true })
+
+			updateDots()
 		}
 
-		controls[0].addEventListener("click", () => {
-			index = (index - 1 + items.length) % items.length
-			update()
-		})
-
-		controls[1].addEventListener("click", () => {
+		const next = () => {
 			index = (index + 1) % items.length
 			update()
-		})
+		}
 
-		// 👇 Fix TypeScript errors by asserting TouchEvent
+		const startAutoplay = () => {
+			stopAutoplay()
+			autoplayInterval = setInterval(next, 5000)
+		}
+
+		const stopAutoplay = () => {
+			if (autoplayInterval !== null) {
+				clearInterval(autoplayInterval)
+				autoplayInterval = null
+			}
+		}
+
+		const resetAutoplay = () => {
+			stopAutoplay()
+			startAutoplay()
+		}
+
+		// Touch swipe
 		let startX = 0
 		list.addEventListener("touchstart", (e) => {
-			const touchEvent = e as TouchEvent
-			startX = touchEvent.touches[0].clientX
+			const event = e as TouchEvent
+			startX = event.touches[0].clientX
 		})
-
 		list.addEventListener("touchend", (e) => {
-			const touchEvent = e as TouchEvent
-			const endX = touchEvent.changedTouches[0].clientX
-
-			if (startX - endX > 50) controls[1]?.click()
-			if (endX - startX > 50) controls[0]?.click()
+			const event = e as TouchEvent
+			const endX = event.changedTouches[0].clientX
+			if (startX - endX > 50) {
+				next()
+				resetAutoplay()
+			} else if (endX - startX > 50) {
+				index = (index - 1 + items.length) % items.length
+				update()
+				resetAutoplay()
+			}
 		})
+
+		update()
+		startAutoplay()
 	})
 </script>

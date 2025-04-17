@@ -1,0 +1,28 @@
+---
+// src/pages/projects/[slug].astro
+import type { GetStaticPaths } from "astro"
+import { getCollection, getEntry, render } from "astro:content"
+import ProjectLayout from "../../layouts/ProjectLayout.astro"
+
+// 1️⃣ Tell Astro which project‐slugs to generate at build time
+export const getStaticPaths = (async () => {
+	const projects = await getCollection("projects")
+	return projects.map((p) => ({
+		params: { slug: p.slug },
+	}))
+}) satisfies GetStaticPaths
+
+// 2️⃣ Grab the slug from the URL
+const { slug } = Astro.params
+
+// 3️⃣ Fetch that single project entry
+const project = await getEntry("projects", slug)
+
+// 4️⃣ Turn its Markdown body into an <astropowered> component
+const { Content } = await render(project)
+---
+
+<!-- 5️⃣ Wrap it all in your layout, passing only the frontmatter -->
+<ProjectLayout {...project.data}>
+	<Content />
+</ProjectLayout>

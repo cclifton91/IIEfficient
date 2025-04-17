@@ -1,31 +1,32 @@
 ---
 import settings from "../data/home.json"
 
-const { heroVideo = settings.heroVideo, story = settings.aboutText } = Astro.props
+const { heroVideo = settings.heroVideo, story = settings.aboutText, logos = settings.logoCloud } = Astro.props
 ---
 
-<div class="immerse-section-tr js-immerse-section-tr">
-	<!-- Sticky container -->
+<div class="immerse-section-tr pt-5 lg:pt-8 js-immerse-section-tr" id="home">
 	<div class="immerse-section-tr__media js-immerse-section-tr__media">
-		<!-- Mobile Video -->
-		<figure class="immerse-section-tr__figure immerse-section-tr__figure--3-4 md:hidden js-immerse-section-tr__figure">
-			<video src={heroVideo} autoplay loop muted playsinline></video>
-		</figure>
+		<div class="w-full">
+			<!-- Moblie -->
+			<figure class="immerse-section-tr__figure immerse-section-tr__figure--3-4 md:hidden js-immerse-section-tr__figure">
+				<video src={heroVideo} autoplay loop muted playsinline></video>
+			</figure>
 
-		<!-- Desktop Video -->
-		<figure class="immerse-section-tr__figure immerse-section-tr__figure--16-9 hidden md:block js-immerse-section-tr__figure">
-			<video src={heroVideo} autoplay loop muted playsinline></video>
-		</figure>
+			<!-- Desktop -->
+			<figure class="immerse-section-tr__figure immerse-section-tr__figure--16-9 hidden md:block js-immerse-section-tr__figure">
+				<video src={heroVideo} autoplay loop muted playsinline></video>
+			</figure>
+		</div>
 	</div>
 
 	<!-- ABOUT CONTENT (wrapped in max-width container) -->
-	<section class="immerse-section-tr__content py-12 bg-slate-900 lg:py-20 mt-8 lg:mt-12 js-immerse-section-tr__content">
+	<section class="immerse-section-tr__content py-12 bg-slate-950 lg:py-20 mt-8 lg:mt-12 js-immerse-section-tr__content">
 		<div class="container px-4 mx-auto py-20">
 			<!--About Content -->
 			<div class="flex flex-wrap -m-8">
 				<div class="w-full md:w-1/2 p-8">
 					<div class="md:max-w-md">
-						<h2 class="font-headings font-bold text-red-400 mb-8 text-6xl uppercase">Our Story</h2>
+						<h2 class="font-headings font-bold text-red-400 mb-8 text-8xl uppercase">Our Story</h2>
 						<p class="font-body text-gray-400 font-medium">
 							{story}
 						</p>
@@ -58,6 +59,17 @@ const { heroVideo = settings.heroVideo, story = settings.aboutText } = Astro.pro
 							</div>
 						</div>
 					</div>
+					<div class="container mx-auto hidden sm:flex flex-wrap mt-24 justify-start items-start">
+						{
+							logos.map((logo) => (
+								<div class="w-full sm:w-1/6 p-3">
+									<div class="flex items-center justify-center sm:justify-start">
+										<img class="w-28 h-auto filter grayscale" src={logo.src} alt={logo.alt} />
+									</div>
+								</div>
+							))
+						}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -86,7 +98,6 @@ const { heroVideo = settings.heroVideo, story = settings.aboutText } = Astro.pro
 		pointer-events: auto;
 		position: relative;
 		height: 0;
-		transition: transform 0.3s ease-out;
 	}
 	.immerse-section-tr__figure > * {
 		position: absolute;
@@ -97,7 +108,7 @@ const { heroVideo = settings.heroVideo, story = settings.aboutText } = Astro.pro
 		object-fit: cover;
 	}
 	.immerse-section-tr__figure--16-9 {
-		padding-bottom: 40%;
+		padding-bottom: 56.25%;
 	}
 	.immerse-section-tr__figure--3-4 {
 		padding-bottom: 133.33%;
@@ -147,13 +158,6 @@ const { heroVideo = settings.heroVideo, story = settings.aboutText } = Astro.pro
 		background-size: 0% 100%;
 	}
 
-	@media (min-width: 1024px) {
-		.text-bg-fx--scale-x {
-			padding-top: 0.25rem; /* lg:py-1 */
-			padding-bottom: 0.25rem; /* lg:py-1 */
-		}
-	}
-
 	.text-bg-fx--scale-y {
 		text-decoration: none;
 		background-image: linear-gradient(hsla(245 58% 51% / 0.2), hsla(245 58% 51% / 0.2));
@@ -185,7 +189,6 @@ const { heroVideo = settings.heroVideo, story = settings.aboutText } = Astro.pro
 	}
 </style>
 
-<!-- Script -->
 <script>
 	class Util {
 		static addClass(el: HTMLElement, className: string): void {
@@ -284,7 +287,7 @@ const { heroVideo = settings.heroVideo, story = settings.aboutText } = Astro.pro
 			if (!this.visibleFigure) return
 
 			this.mediaInitHeight = this.visibleFigure.offsetHeight
-			this.scrollDelta = 600
+			this.scrollDelta = Math.max(Math.min((window.innerHeight - this.visibleFigure.offsetHeight) / 2, window.innerHeight), 200)
 
 			this.media[0].style.height = `${window.innerHeight}px`
 			this.media[0].style.paddingTop = `${(window.innerHeight - this.visibleFigure.offsetHeight) / 2}px`
@@ -326,7 +329,7 @@ const { heroVideo = settings.heroVideo, story = settings.aboutText } = Astro.pro
 				this.updateOpacity(0)
 			} else {
 				this.updateScale(this.mediaScale)
-				this.updateOpacity((1.2 * (offsetTop - this.scrollDelta - top)) / window.innerHeight)
+				this.updateOpacity((1.8 * (offsetTop - this.scrollDelta - top)) / window.innerHeight)
 			}
 
 			this.scrolling = false
@@ -355,12 +358,9 @@ const { heroVideo = settings.heroVideo, story = settings.aboutText } = Astro.pro
 			}
 		}
 
-		/**private handleScroll(): void {
+		private handleScroll(): void {
 			if (this.scrolling) return
 			this.scrolling = true
-			window.requestAnimationFrame(() => this.updateScaleAndOpacity())
-		}>**/
-		private handleScroll(): void {
 			window.requestAnimationFrame(() => this.updateScaleAndOpacity())
 		}
 

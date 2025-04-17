@@ -1,0 +1,60 @@
+---
+// src/layouts/ProjectLayout.astro
+import "../styles/global.css"
+import BaseHead from "../components/BaseHead.astro"
+
+const { title, description, coverImg, video, tag, featured } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} image={coverImg?.src} />
+	</head>
+	<body class="bg-slate-900">
+		<section class="pb-24">
+			<div class="container px-4 mx-auto">
+				<div class="max-w-6xl mx-auto">
+					<!-- Header -->
+					<div class="py-24 max-w-4xl">
+						<h2 class="leading-none text-red-400 font-headings font-extrabold tracking-tight uppercase mb-12 sm:text-[12vw] text-[10vh]">
+							{title}
+						</h2>
+						<p class="font-body text-gray-400 sm:text-base text-xl">
+							{description}
+						</p>
+					</div>
+
+					<!-- Media -->
+					<div class="w-full mb-10 aspect-video rounded-lg overflow-hidden shadow-lg">
+						{
+							video ? (
+								<video src={video} controls autoplay muted playsinline class="w-full h-full object-cover" />
+							) : (
+								<img src={coverImg?.src} alt={coverImg?.alt ?? title} class="w-full h-full object-cover" />
+							)
+						}
+					</div>
+
+					<!-- Body Content -->
+					<div class="flex flex-wrap -mx-4">
+						<div class="w-full lg:w-2/3 px-4 mb-12 lg:mb-0">
+							<div class="prose prose-invert max-w-none">
+								<slot />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<style>
+			html,
+			body {
+				margin: 0;
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</body>
+</html>
