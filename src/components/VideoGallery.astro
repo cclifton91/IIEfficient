@@ -2,15 +2,17 @@
 import Carousel from "../components/interactive/Carousel.astro"
 ---
 
-<section class="flex flex-col md:flex-row min-h-screen bg-slate-950" id="videoGallery">
-	<!-- Text Left -->
-	<div class="w-full md:w-1/2 flex flex-col justify-start p-8">
-		<h2 class="leading-none text-red-400 font-headings font-extrabold tracking-tight uppercase mb-6 text-8xl text-center sm:text-left">Showreel</h2>
-		<h3 class="font-headings mb-3 text-2xl font-bold text-red-400 uppercase text-center sm:text-left">See for yourself</h3>
-	</div>
+<section class="container px-4 mx-auto py-20" id="videoGallery">
+	<div class="flex flex-wrap -m-8">
+		<!-- Text Left -->
+		<div class="w-full md:w-1/2 flex flex-col justify-start p-8">
+			<h2 class="leading-none text-red-400 font-headings font-extrabold tracking-tight uppercase mb-6 text-8xl text-left">Showreel</h2>
+			<h3 class="font-headings mb-3 text-2xl font-bold text-red-400 uppercase text-left">See for yourself</h3>
+		</div>
 
-	<!-- Carousel Right -->
-	<div class="w-full md:w-1/2 h-[50vh] md:h-full relative">
-		<Carousel />
+		<!-- Carousel Right -->
+		<div class="w-full md:w-1/2 relative max-h-screen">
+			<Carousel client:load />
+		</div>
 	</div>
 </section>

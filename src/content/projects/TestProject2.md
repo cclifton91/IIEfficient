@@ -1,8 +1,9 @@
 ---
+slug: testproject2
 title: Test Project 2
 description: This is a test project for the documentation.
 tag: ["sport", "commercial",  "music"]
-video: ./media/testproject1.mp4
+video: /media/testproject1.mp4
 coverImg: ./media/basketballshot.png
 coverAlt: Test Project 2 Cover Image
 featured: true

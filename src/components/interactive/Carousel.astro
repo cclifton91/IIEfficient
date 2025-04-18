@@ -3,7 +3,7 @@ import settings from "../../data/home.json"
 const { videoCarousel = settings.videoCarousel } = Astro.props
 ---
 
-<div class="relative js-carousel w-full h-[calc(100vh-4rem)] max-h-[90vh] overflow-hidden flex items-center">
+<div class="relative js-carousel w-full h-full overflow-hidden flex items-center">
 	<!-- Video List -->
 	<ul class="carousel__list flex w-full h-full transition-transform js-carousel__list">
 		{
