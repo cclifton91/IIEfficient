@@ -3,13 +3,13 @@ import settings from "../../data/home.json"
 const { videoCarousel = settings.videoCarousel } = Astro.props
 ---
 
-<div class="relative js-carousel w-full h-full overflow-hidden flex items-center">
+<div class="relative js-carousel w-full aspect-[4/5] overflow-hidden flex items-center">
 	<!-- Video List -->
 	<ul class="carousel__list flex w-full h-full transition-transform js-carousel__list">
 		{
 			videoCarousel.map((item) => (
 				<li class="carousel__item w-full h-full flex-shrink-0">
-					<video autoplay muted loop playsinline class="w-full h-full object-cover" src={`/media/videoGallery/${item.src}.${item.type}`} />
+					<video autoplay muted loop playsinline class="w-full h-full object-cover rounded-xl" src={`/media/videoGallery/${item.src}.${item.type}`} />
 				</li>
 			))
 		}
