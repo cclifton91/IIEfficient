@@ -6,28 +6,28 @@ const { heroVideo = settings.heroVideo, story = settings.aboutText, logos = sett
 
 <div class="immerse-section-tr pt-5 lg:pt-8 js-immerse-section-tr" id="home">
 	<div class="immerse-section-tr__media js-immerse-section-tr__media">
-		<div class="w-full">
+		<div class="w-[calc(100%_-_2.5rem)] lg:w-[calc(100%_-_4rem)] mx-auto max-w-3xl">
 			<!-- Moblie -->
 			<figure class="immerse-section-tr__figure immerse-section-tr__figure--3-4 md:hidden js-immerse-section-tr__figure">
-				<video src={heroVideo} autoplay loop muted playsinline></video>
+				<video src={heroVideo} class="rounded-xl" autoplay loop muted playsinline></video>
 			</figure>
 
 			<!-- Desktop -->
 			<figure class="immerse-section-tr__figure immerse-section-tr__figure--16-9 hidden md:block js-immerse-section-tr__figure">
-				<video src={heroVideo} autoplay loop muted playsinline></video>
+				<video src={heroVideo} class="rounded-xl" autoplay loop muted playsinline></video>
 			</figure>
 		</div>
 	</div>
 
 	<!-- ABOUT CONTENT (wrapped in max-width container) -->
-	<section class="immerse-section-tr__content py-12 bg-slate-950 lg:py-20 mt-8 lg:mt-12 mb-32 js-immerse-section-tr__content">
+	<section class="immerse-section-tr__content py-12 bg-slate-950 lg:py-20 mt-8 lg:mt-12 mb-32 js-immerse-section-tr__content" id="about">
 		<div class="container px-4 mx-auto py-20">
 			<!--About Content -->
 			<div class="flex flex-wrap -m-8">
 				<div class="w-full md:w-1/2 p-8">
 					<div class="md:max-w-md">
-						<h2 class="font-headings font-bold text-red-400 mb-6 text-8xl uppercase">About</h2>
-						<h3 class="font-headings mb-3 text-2xl font-bold text-red-400 uppercase text-left">Our Humble Beginnings</h3>
+						<h2 class="font-headings font-bold text-red-400 mb-6 text-6xl md:text-8xl uppercase">About</h2>
+						<h3 class="font-headings mb-3 text-2xl md:text-3xl font-bold text-red-400 uppercase text-left">Our Humble Beginnings</h3>
 						<p class="font-body text-gray-400 font-medium">
 							{story}
 						</p>
@@ -60,19 +60,19 @@ const { heroVideo = settings.heroVideo, story = settings.aboutText, logos = sett
 							</div>
 						</div>
 					</div>
-					<div class="container mx-auto hidden sm:flex flex-wrap mt-24 justify-start items-start">
-						{
-							logos.map((logo) => (
-								<div class="w-full sm:w-1/6 p-3">
-									<div class="flex items-center justify-center sm:justify-start">
-										<img class="w-28 h-auto filter grayscale" src={logo.src} alt={logo.alt} />
-									</div>
-								</div>
-							))
-						}
-					</div>
 				</div>
 			</div>
+		</div>
+		<div class="container mx-auto hidden sm:flex flex-wrap justify-start items-start">
+			{
+				logos.map((logo) => (
+					<div class="w-full sm:w-1/6 p-3">
+						<div class="flex items-center justify-center sm:justify-start">
+							<img class="w-28 h-auto filter grayscale" src={logo.src} alt={logo.alt} />
+						</div>
+					</div>
+				))
+			}
 		</div>
 	</section>
 </div>

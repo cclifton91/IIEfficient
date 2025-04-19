@@ -22,6 +22,10 @@
     {
       "src": "src/media/logo_cloud/logo5.png",
       "alt": "logo5"
+    },
+    {
+      "src": "src/media/logo_cloud/logo6.png",
+      "alt": "logo6"
     }
   ],
   "videoCarousel": [

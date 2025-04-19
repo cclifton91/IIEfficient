@@ -1,11 +1,11 @@
 ---
 import settings from "../data/home.json"
 
-const { logos = settings.logoCloud, operatingTime = settings.bizInfo } = Astro.props
+const { operatingTime = settings.bizInfo } = Astro.props
 ---
 
-<section class="py-20 px-4 md:px-8">
-	<div class="container mx-auto flex flex-col items-center text-center md:text-left">
+<section class="flex items-start justify-center min-h-screen px-4 md:px-8">
+	<div class="container mx-auto flex flex-col text-center md:text-left">
 		<!-- Title -->
 		<h1 class="leading-none text-red-400 font-headings font-extrabold tracking-tight uppercase mb-12 sm:text-[12vw] text-[10vh] text-center sm:text-left">II EFFICIENT Media</h1>
 		<!-- Bottom Info Grid -->
